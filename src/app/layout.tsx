@@ -20,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${prompt.className} antialiased`}>
+      <body className={`${prompt.className}`}>
         <Providers>{children}</Providers>
       </body>
     </html>
