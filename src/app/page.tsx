@@ -1,10 +1,10 @@
 "use client";
-import { useState } from "react";
 import AppLayout from "@/components/AppLayout";
-import VRMViewer from "@/components/VRMViewer";
 import ChatBox from "@/components/ChatBox";
+import VRMViewer from "@/components/VRMViewer";
+import { useState } from "react";
 
-export default function page() {
+export default function Home() {
   const [vrmMessage, setVrmMessage] = useState<string>("");
   const [isTyping, setIsTyping] = useState<boolean>(false);
 
@@ -23,7 +23,10 @@ export default function page() {
   return (
     <AppLayout>
       <VRMViewer onMessage={handleMessage} isTyping={isTyping} />
-      <ChatBox onTypingChange={handleTypingChange} onNewMessage={handleNewMessage} />
+      <ChatBox
+        onTypingChange={handleTypingChange}
+        onNewMessage={handleNewMessage}
+      />
     </AppLayout>
   );
 }
