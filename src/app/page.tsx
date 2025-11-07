@@ -20,7 +20,7 @@ export default function Home() {
     setVrmMessage(message);
   };
 
-  return (
+  return ( 
     <AppLayout>
       <VRMViewer onMessage={handleMessage} isTyping={isTyping} />
       <ChatBox
