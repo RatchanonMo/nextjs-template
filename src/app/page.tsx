@@ -2,7 +2,7 @@
 import { useStore } from "@/stores/useStore";
 import { Button } from "@heroui/react";
 
-export default function page() {
+export default function Home() {
   const { count, inc } = useStore();
   return (
     <div>
