@@ -14,9 +14,15 @@ importers:
       '@khaveeai/core':
         specifier: ^0.1.1
         version: 0.1.1
+      '@khaveeai/providers-openai-realtime':
+        specifier: ^0.1.4
+        version: 0.1.4(react@19.1.0)
       '@khaveeai/react':
-        specifier: ^0.2.2
-        version: 0.2.2(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.2.3
+        version: 0.2.4(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@qdrant/js-client-rest':
+        specifier: ^1.15.1
+        version: 1.15.1(typescript@5.9.3)
       '@react-three/drei':
         specifier: ^10.7.6
         version: 10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)
@@ -877,8 +883,16 @@ packages:
   '@khaveeai/core@0.1.1':
     resolution: {integrity: sha512-hxK+fD8sehpAqIe0Mmm0VNRORyrElpn03YBuOu49Y9VLOjzCTBBZrx0cFP4rzlGjhI7b9pPkm7lImwmmlUlC5w==}
 
-  '@khaveeai/react@0.2.2':
-    resolution: {integrity: sha512-p8MMYIjNgAm89vSvyK8jqkb9yKWFPxzYdwTA+9gSAY0WTq7mNzCK0zsWx+RCn+47NP5/prysRhSZ01Wtekyt/g==}
+  '@khaveeai/core@0.1.2':
+    resolution: {integrity: sha512-BYTKl2aUfLxhglhjaPjA9+CQR0asryDP/pLPcF8xEWMylMBLKlAaG2YetATLMJd6YWUfOW28I0DB7w1Diu9DOw==}
+
+  '@khaveeai/providers-openai-realtime@0.1.4':
+    resolution: {integrity: sha512-MiUZAFbD/NiIyJIWpuIKOOHzn4vvCeoh1WK3IM+59nwC+uvbvoH4JM3MKA0/zEj33i1DylUCL6UbhQldiCoJaQ==}
+    peerDependencies:
+      react: ^18.0.0 || ^19.0.0
+
+  '@khaveeai/react@0.2.4':
+    resolution: {integrity: sha512-pVXZa4jntBoAFS6Co+wvrbBwHR4N1yEcIRjXazJaXapYxhtwTHaAEZS/3K5XsY2wGatsUe5PnguoG+B7EQGFPg==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -1018,6 +1032,16 @@ packages:
 
   '@pixiv/types-vrmc-vrm-1.0@3.4.3':
     resolution: {integrity: sha512-6ucxefth1KW+0nkSV5b2DRIR3RIZRNa+g4RBsOCwwill/tLaNKxqsfAdvbvIi7OsxnwSMDWB53relBdIlsoW0w==}
+
+  '@qdrant/js-client-rest@1.15.1':
+    resolution: {integrity: sha512-FAPMz6Z7RFj9vUun8R9e8SYcX6EkZtdfYfnh5lFXWcjEaat9q/jce1baAJCWAr3k8yHh62HpzCRYOatLVII28g==}
+    engines: {node: '>=18.17.0', pnpm: '>=8'}
+    peerDependencies:
+      typescript: '>=4.7'
+
+  '@qdrant/openapi-typescript-fetch@1.2.6':
+    resolution: {integrity: sha512-oQG/FejNpItrxRHoyctYvT3rwGZOnK4jr3JdppO/c78ktDvkWiPXPHNsrDf33K9sZdRb6PR7gi4noIapu5q4HA==}
+    engines: {node: '>=18.0.0', pnpm: '>=8'}
 
   '@react-aria/breadcrumbs@3.5.29':
     resolution: {integrity: sha512-rKS0dryllaZJqrr3f/EAf2liz8CBEfmL5XACj+Z1TAig6GIYe1QuA3BtkX0cV9OkMugXdX8e3cbA7nD10ORRqg==}
@@ -1525,6 +1549,9 @@ packages:
 
   '@rushstack/eslint-patch@1.14.0':
     resolution: {integrity: sha512-WJFej426qe4RWOm9MMtP4V3CV4AucXolQty+GRgAWLgQXmpCuwzs7hEpxxhSc/znXUSxum9d/P/32MW0FlAAlA==}
+
+  '@sevinf/maybe@0.5.0':
+    resolution: {integrity: sha512-ARhyoYDnY1LES3vYI0fiG6e9esWfTNcXcO6+MPJJXcnyMV3bim4lnFt45VXouV7y82F4x3YH8nOQ6VztuvUiWg==}
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
@@ -3373,6 +3400,10 @@ packages:
   undici-types@6.21.0:
     resolution: {integrity: sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ==}
 
+  undici@6.22.0:
+    resolution: {integrity: sha512-hU/10obOIu62MGYjdskASR3CUAiYaFTtC9Pa6vHyf//mAipSvSQg6od2CnJswq7fvzNS3zJhxoRkgNVaHurWKw==}
+    engines: {node: '>=18.17'}
+
   unrs-resolver@1.11.1:
     resolution: {integrity: sha512-bSjt9pjaEBnNiGgc9rUiHGKv5l4/TGzDmYw3RhnkJGtLhbnnA/5qJj7x3dNDCRx/PJxu774LlH8lCOlB4hEfKg==}
 
@@ -3414,6 +3445,10 @@ packages:
   utility-types@3.11.0:
     resolution: {integrity: sha512-6Z7Ma2aVEWisaL6TvBCy7P8rm2LQoPv6dJ7ecIaIixHcwfbJ0x7mWdbcwlIM5IGQxPZSFYeqRCqlOOeKoJYMkw==}
     engines: {node: '>= 4'}
+
+  uuid@13.0.0:
+    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
+    hasBin: true
 
   wav@1.0.2:
     resolution: {integrity: sha512-viHtz3cDd/Tcr/HbNqzQCofKdF6kWUymH9LGDdskfWFoIy/HJ+RTihgjEcHfnsy1PO4e9B+y4HwgTwMrByquhg==}
@@ -4743,9 +4778,20 @@ snapshots:
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       three: 0.180.0
 
-  '@khaveeai/react@0.2.2(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@khaveeai/core@0.1.2':
     dependencies:
-      '@khaveeai/core': 0.1.1
+      '@pixiv/three-vrm': 3.4.3(three@0.180.0)
+      three: 0.180.0
+
+  '@khaveeai/providers-openai-realtime@0.1.4(react@19.1.0)':
+    dependencies:
+      '@khaveeai/core': 0.1.2
+      react: 19.1.0
+      uuid: 13.0.0
+
+  '@khaveeai/react@0.2.4(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+    dependencies:
+      '@khaveeai/core': 0.1.2
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       '@react-three/drei': 10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)
       '@react-three/fiber': 9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)
@@ -4881,6 +4927,15 @@ snapshots:
   '@pixiv/types-vrmc-springbone-extended-collider-1.0@3.4.3': {}
 
   '@pixiv/types-vrmc-vrm-1.0@3.4.3': {}
+
+  '@qdrant/js-client-rest@1.15.1(typescript@5.9.3)':
+    dependencies:
+      '@qdrant/openapi-typescript-fetch': 1.2.6
+      '@sevinf/maybe': 0.5.0
+      typescript: 5.9.3
+      undici: 6.22.0
+
+  '@qdrant/openapi-typescript-fetch@1.2.6': {}
 
   '@react-aria/breadcrumbs@3.5.29(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
@@ -5725,6 +5780,8 @@ snapshots:
   '@rtsao/scc@1.1.0': {}
 
   '@rushstack/eslint-patch@1.14.0': {}
+
+  '@sevinf/maybe@0.5.0': {}
 
   '@swc/helpers@0.5.15':
     dependencies:
@@ -7712,6 +7769,8 @@ snapshots:
 
   undici-types@6.21.0: {}
 
+  undici@6.22.0: {}
+
   unrs-resolver@1.11.1:
     dependencies:
       napi-postinstall: 0.3.4
@@ -7764,6 +7823,8 @@ snapshots:
       react: 19.1.0
 
   utility-types@3.11.0: {}
+
+  uuid@13.0.0: {}
 
   wav@1.0.2:
     dependencies:
