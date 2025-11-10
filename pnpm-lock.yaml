@@ -15,8 +15,8 @@ importers:
         specifier: ^0.1.2
         version: 0.1.2
       '@khaveeai/providers-openai-realtime':
-        specifier: ^0.2.3
-        version: 0.2.3(react@19.1.0)
+        specifier: ^0.2.4
+        version: 0.2.4(react@19.1.0)
       '@khaveeai/providers-rag':
         specifier: ^0.1.1
         version: 0.1.1(typescript@5.9.3)
@@ -892,8 +892,8 @@ packages:
   '@khaveeai/core@0.1.2':
     resolution: {integrity: sha512-BYTKl2aUfLxhglhjaPjA9+CQR0asryDP/pLPcF8xEWMylMBLKlAaG2YetATLMJd6YWUfOW28I0DB7w1Diu9DOw==}
 
-  '@khaveeai/providers-openai-realtime@0.2.3':
-    resolution: {integrity: sha512-g+Vr56gzouYGlmvHRGvrdPcwWDMvP5Wi4YyoBUQaQVEKOItcr8s9N4EbBkxkxc5MM4pyzUVKeifTqBWiiUxypw==}
+  '@khaveeai/providers-openai-realtime@0.2.4':
+    resolution: {integrity: sha512-xUhGgmvm2XYxIIt8sO9wdyFjDpwm+WXfHGrj5TmUnf9MK8wgbjm76wWWePhOewjfmyGVWxM9OwNc2aAMjeRQQA==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
@@ -5154,7 +5154,7 @@ snapshots:
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       three: 0.180.0
 
-  '@khaveeai/providers-openai-realtime@0.2.3(react@19.1.0)':
+  '@khaveeai/providers-openai-realtime@0.2.4(react@19.1.0)':
     dependencies:
       '@khaveeai/core': 0.1.2
       react: 19.1.0
