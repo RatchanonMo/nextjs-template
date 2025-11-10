@@ -6,7 +6,7 @@ export default function AppLayout({
   return (
     <div
       className="h-dvh bg-cover bg-center bg-no-repeat relative"
-      style={{ backgroundImage: "url(/images/background.jpg)" }}
+      // style={{ backgroundImage: "url(/images/background.jpg)" }}
     >
       <div className="absolute inset-0 backdrop-blur-sm"></div>
       <div className="relative z-10 h-full flex flex-col md:flex-row">
