@@ -28,7 +28,7 @@ export default function VRMViewer() {
 
         <Environment preset="park" />
         <VRMAvatar
-          src="./models/chiba.vrm"
+          src="./models/polarbear.vrm"
           animations={animations}
           position-y={-1.25}
         />
