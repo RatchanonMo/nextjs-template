@@ -1,7 +1,15 @@
 "use client";
+import {
+  Button,
+  Card,
+  CardBody,
+  CardFooter,
+  CardHeader,
+  Divider,
+  Input,
+} from "@heroui/react";
 import { useRealtime } from "@khaveeai/react";
-import { Button, Card, CardBody, CardFooter, CardHeader, Input } from "@heroui/react";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -42,7 +50,7 @@ export default function ChatBox() {
     <div className="w-full md:w-1/2 h-1/2 md:h-full p-5">
       <Card shadow="none" className="h-full flex flex-col rounded-3xl p-4">
         {/* Header */}
-        <CardHeader >
+        <CardHeader>
           <h2 className="text-xl font-semibold">Chat</h2>
         </CardHeader>
 
@@ -51,36 +59,14 @@ export default function ChatBox() {
           <div ref={scrollable}>
             <div className="space-y-4">
               {conversation.map((message) => (
-                <div
-                  key={message.id}
-                  className={`flex ${
-                    message.role === "user" ? "justify-end" : "justify-start"
-                  }`}
-                >
-                  <div className="max-w-xs lg:max-w-md">
-                    <div
-                      className={`rounded-2xl px-4 py-2 ${
-                        message.role === "user"
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-default-100"
-                      }`}
-                    >
-                      <ReactMarkdown
-                        remarkPlugins={[remarkGfm]}
-                       
-                      >
-                        {message.text}
-                      </ReactMarkdown>
-                    </div>
-                    <p
-                      className={`text-xs text-default-500 mt-1 ${
-                        message.role === "user" ? "text-right" : ""
-                      }`}
-                    >
-                      {message.role === "user" ? "You" : "Assistant"}
-                    </p>
+                <Fragment key={message.id}>
+                  <div className="rounded-2xl px-4 py-2 bg-slate-100 max-w-max">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {message.text}
+                    </ReactMarkdown>
                   </div>
-                </div>
+                  <Divider className="mx-auto h-1.5 w-52 rounded-full bg-slate-50" />
+                </Fragment>
               ))}
             </div>
           </div>

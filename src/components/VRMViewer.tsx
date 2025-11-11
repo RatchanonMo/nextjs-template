@@ -23,7 +23,7 @@ export default function VRMViewer() {
         />
 
         {/* Enhanced lighting setup for mall environment */}
-        <ambientLight intensity={3.5} />
+        <ambientLight intensity={6} />
         {/* <directionalLight position={[10, 10, 5]} intensity={3} castShadow /> */}
 
         {/* <Environment preset="park" /> */}
