@@ -9,7 +9,7 @@ export default function AppLayout({
       style={{ backgroundImage: "url(/images/background.jpg)" }}
     >
       <div className="absolute inset-0 backdrop-blur-sm"></div>
-      <div className="relative z-10 h-full flex flex-col md:flex-row">
+      <div className="relative z-10 h-full">
         {children}
       </div>
     </div>

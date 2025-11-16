@@ -9,6 +9,7 @@ import {
   Input,
 } from "@heroui/react";
 import { useRealtime } from "@khaveeai/react";
+import { MessageCircle, Mic, MicOff, X } from "lucide-react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -18,7 +19,14 @@ export default function ChatBox() {
   const [isVisible, setIsVisible] = useState(false);
   const scrollable = useRef<HTMLDivElement>(null);
 
-  const { sendMessage, isConnected, conversation, connect } = useRealtime();
+  const {
+    sendMessage,
+    isConnected,
+    conversation,
+    connect,
+    toggleMicrophone,
+    isMicEnabled,
+  } = useRealtime();
 
   const scrollToBottom = () => {
     const bottomElement = scrollable.current?.lastElementChild;
@@ -58,7 +66,7 @@ export default function ChatBox() {
         className="fixed bottom-6 right-6 z-50 shadow-lg"
         onPress={() => setIsVisible(!isVisible)}
       >
-        {isVisible ? "✕" : "💬"}
+        {isVisible ? <X size={24} /> : <MessageCircle size={24} />}
       </Button>
 
       {/* Chat Box */}
@@ -101,6 +109,17 @@ export default function ChatBox() {
             {/* Input Area */}
             <CardFooter className="flex-col gap-2 border-t border-slate-100 pt-3">
               <div className="flex w-full gap-2">
+                <Button
+                  isIconOnly
+                  onPress={toggleMicrophone}
+                  isDisabled={!isConnected}
+                  color={isMicEnabled ? "danger" : "default"}
+                  radius="lg"
+                  size="sm"
+                  className="min-w-unit-9"
+                >
+                  {isMicEnabled ? <Mic size={16} /> : <MicOff size={16} />}
+                </Button>
                 <Input
                   type="text"
                   placeholder="Type your message..."

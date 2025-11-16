@@ -13,7 +13,7 @@ export default function VRMViewer() {
   };
 
   return (
-    <div className="w-full md:w-1/2 h-1/2 md:h-full ">
+    <div className="w-full">
       <Canvas camera={{ position: [0.25, 0.25, 2], fov: 30 }}>
         <CameraControls
           ref={controls}

@@ -12,17 +12,17 @@ importers:
         specifier: ^2.8.5
         version: 2.8.5(@types/react@19.2.2)(framer-motion@12.23.24(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.15)
       '@khaveeai/core':
-        specifier: ^0.1.2
-        version: 0.1.2
+        specifier: ^0.1.4
+        version: 0.1.4
       '@khaveeai/providers-openai-realtime':
-        specifier: ^0.2.4
-        version: 0.2.4(react@19.1.0)
+        specifier: ^0.2.6
+        version: 0.2.6(react@19.1.0)
       '@khaveeai/providers-rag':
         specifier: ^0.1.1
         version: 0.1.1(typescript@5.9.3)
       '@khaveeai/react':
-        specifier: ^0.2.3
-        version: 0.2.4(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+        specifier: ^0.2.5
+        version: 0.2.5(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@qdrant/js-client-rest':
         specifier: ^1.15.1
         version: 1.15.1(typescript@5.9.3)
@@ -35,6 +35,9 @@ importers:
       axios:
         specifier: ^1.12.2
         version: 1.12.2
+      lucide-react:
+        specifier: ^0.553.0
+        version: 0.553.0(react@19.1.0)
       next:
         specifier: 15.5.6
         version: 15.5.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -889,19 +892,19 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@khaveeai/core@0.1.2':
-    resolution: {integrity: sha512-BYTKl2aUfLxhglhjaPjA9+CQR0asryDP/pLPcF8xEWMylMBLKlAaG2YetATLMJd6YWUfOW28I0DB7w1Diu9DOw==}
+  '@khaveeai/core@0.1.4':
+    resolution: {integrity: sha512-kRxj4+Tc9/ER9dvNFAl0tTjTo6xcB1immDirVCknC2ya2/pxZ7HuazctlogmRalLpfmb2uBulgYUE1fgveXlXQ==}
 
-  '@khaveeai/providers-openai-realtime@0.2.4':
-    resolution: {integrity: sha512-xUhGgmvm2XYxIIt8sO9wdyFjDpwm+WXfHGrj5TmUnf9MK8wgbjm76wWWePhOewjfmyGVWxM9OwNc2aAMjeRQQA==}
+  '@khaveeai/providers-openai-realtime@0.2.6':
+    resolution: {integrity: sha512-vHc0XwzKjcA+cnST3DYAJo+OweAY1wVGAzrNYBe7Yx1yjgFCs+q96zcN9TfuYyW00Kv86Jydm9IafzDY9J6z6A==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
   '@khaveeai/providers-rag@0.1.1':
     resolution: {integrity: sha512-CVWbENHMmAeDAC7XIX+rI0uzAsaU1LfV+lrvlgvXzeCfFs2btukIjwlnugZzZebR3BA54RE7ZU8XkeJCBPSwbg==}
 
-  '@khaveeai/react@0.2.4':
-    resolution: {integrity: sha512-pVXZa4jntBoAFS6Co+wvrbBwHR4N1yEcIRjXazJaXapYxhtwTHaAEZS/3K5XsY2wGatsUe5PnguoG+B7EQGFPg==}
+  '@khaveeai/react@0.2.5':
+    resolution: {integrity: sha512-UX10lyevrGxrZQdU3adRIu8ZSTA3TkaY6BUJVz2Iag7kc+BrbE4nlylvW27+IfK4/rsCcGDdDFwNpiMmNHBBBQ==}
     peerDependencies:
       react: '>=18.0.0'
 
@@ -2924,6 +2927,11 @@ packages:
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
+
+  lucide-react@0.553.0:
+    resolution: {integrity: sha512-BRgX5zrWmNy/lkVAe0dXBgd7XQdZ3HTf+Hwe3c9WK6dqgnj9h+hxV+MDncM88xDWlCq27+TKvHGE70ViODNILw==}
+    peerDependencies:
+      react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
   maath@0.10.8:
     resolution: {integrity: sha512-tRvbDF0Pgqz+9XUa4jjfgAQ8/aPKmQdWXilFu2tMy4GWj4NOsx99HlULO4IeREfbO3a0sA145DZYyvXPkybm0g==}
@@ -5149,20 +5157,20 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@khaveeai/core@0.1.2':
+  '@khaveeai/core@0.1.4':
     dependencies:
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       three: 0.180.0
 
-  '@khaveeai/providers-openai-realtime@0.2.4(react@19.1.0)':
+  '@khaveeai/providers-openai-realtime@0.2.6(react@19.1.0)':
     dependencies:
-      '@khaveeai/core': 0.1.2
+      '@khaveeai/core': 0.1.4
       react: 19.1.0
       uuid: 13.0.0
 
   '@khaveeai/providers-rag@0.1.1(typescript@5.9.3)':
     dependencies:
-      '@khaveeai/core': 0.1.2
+      '@khaveeai/core': 0.1.4
       '@qdrant/js-client-rest': 1.15.1(typescript@5.9.3)
       openai: 4.104.0
     transitivePeerDependencies:
@@ -5171,9 +5179,9 @@ snapshots:
       - ws
       - zod
 
-  '@khaveeai/react@0.2.4(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
+  '@khaveeai/react@0.2.5(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@khaveeai/core': 0.1.2
+      '@khaveeai/core': 0.1.4
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       '@react-three/drei': 10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)
       '@react-three/fiber': 9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)
@@ -7642,6 +7650,10 @@ snapshots:
   loose-envify@1.4.0:
     dependencies:
       js-tokens: 4.0.0
+
+  lucide-react@0.553.0(react@19.1.0):
+    dependencies:
+      react: 19.1.0
 
   maath@0.10.8(@types/three@0.180.0)(three@0.180.0):
     dependencies:
