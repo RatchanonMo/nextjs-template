@@ -9,7 +9,7 @@ const prompt = Prompt({
 });
 
 export const metadata: Metadata = {
-  title: "Punpro Demo",
+  title: "Khavee Computer",
 };
 
 export default function RootLayout({
