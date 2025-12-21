@@ -2,13 +2,14 @@
 
 import { searchKnowledgeBase } from "@/libs/rag";
 import { HeroUIProvider } from "@heroui/react";
-import { OpenAIRealtimeProvider } from "@khaveeai/providers-openai-realtime";
+import { NovaProvider } from "@khaveeai/providers-nova";
 import { KhaveeProvider } from "@khaveeai/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  const realtime = new OpenAIRealtimeProvider({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || "",
-    instructions:
+  const realtime = new NovaProvider({
+    websocketUrl: `ws://localhost:3000/api/nova`,
+    voice: "matthew",
+    systemPrompt:
       "พูดสั้นๆ กระชับ ตอบตรงประเด็น ใช้ภาษาแบบเป็นกันเอง ช่วยเหลือผู้ใช้ตามที่ต้องการ แทนตัวเองว่าปันๆ ลงท้ายด้วยคำว่าครับ ใช้ search_knowledge_base tool เมื่อผู้ใช้ถามคำถามที่ต้องการข้อมูลเฉพาะเจาะจง",
     tools: [
       {
