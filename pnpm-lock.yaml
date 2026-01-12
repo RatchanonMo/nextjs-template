@@ -12,11 +12,11 @@ importers:
         specifier: ^2.8.5
         version: 2.8.5(@types/react@19.2.2)(framer-motion@12.23.24(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.15)
       '@khaveeai/core':
-        specifier: ^0.1.4
-        version: 0.1.4
+        specifier: ^0.1.6
+        version: 0.1.6
       '@khaveeai/providers-openai-realtime':
-        specifier: ^0.2.6
-        version: 0.2.6(react@19.1.0)
+        specifier: ^0.2.8
+        version: 0.2.8(react@19.1.0)
       '@khaveeai/providers-rag':
         specifier: ^0.1.1
         version: 0.1.1(typescript@5.9.3)
@@ -892,11 +892,11 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@khaveeai/core@0.1.4':
-    resolution: {integrity: sha512-kRxj4+Tc9/ER9dvNFAl0tTjTo6xcB1immDirVCknC2ya2/pxZ7HuazctlogmRalLpfmb2uBulgYUE1fgveXlXQ==}
+  '@khaveeai/core@0.1.6':
+    resolution: {integrity: sha512-8GbeKhsIIzF1nrYWDVXjdbW+qDbpJB7auTnP7TY3oV1XoLYM7EPYgCa4T2G2y1qKyAOgiZYQThy2Yy9jo8t+dw==}
 
-  '@khaveeai/providers-openai-realtime@0.2.6':
-    resolution: {integrity: sha512-vHc0XwzKjcA+cnST3DYAJo+OweAY1wVGAzrNYBe7Yx1yjgFCs+q96zcN9TfuYyW00Kv86Jydm9IafzDY9J6z6A==}
+  '@khaveeai/providers-openai-realtime@0.2.8':
+    resolution: {integrity: sha512-WzEl6jZzpJsjvnhigoWkMCsqTL5GHbE/pV6G1yfZARWcMYJdJ/oph1Ipw5d2L4aJU6ByNkPmerujtO5GTwmdJQ==}
     peerDependencies:
       react: ^18.0.0 || ^19.0.0
 
@@ -5157,20 +5157,20 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@khaveeai/core@0.1.4':
+  '@khaveeai/core@0.1.6':
     dependencies:
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       three: 0.180.0
 
-  '@khaveeai/providers-openai-realtime@0.2.6(react@19.1.0)':
+  '@khaveeai/providers-openai-realtime@0.2.8(react@19.1.0)':
     dependencies:
-      '@khaveeai/core': 0.1.4
+      '@khaveeai/core': 0.1.6
       react: 19.1.0
       uuid: 13.0.0
 
   '@khaveeai/providers-rag@0.1.1(typescript@5.9.3)':
     dependencies:
-      '@khaveeai/core': 0.1.4
+      '@khaveeai/core': 0.1.6
       '@qdrant/js-client-rest': 1.15.1(typescript@5.9.3)
       openai: 4.104.0
     transitivePeerDependencies:
@@ -5181,7 +5181,7 @@ snapshots:
 
   '@khaveeai/react@0.2.5(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)':
     dependencies:
-      '@khaveeai/core': 0.1.4
+      '@khaveeai/core': 0.1.6
       '@pixiv/three-vrm': 3.4.3(three@0.180.0)
       '@react-three/drei': 10.7.6(@react-three/fiber@9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0))(@types/react@19.2.2)(@types/three@0.180.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)
       '@react-three/fiber': 9.4.0(@types/react@19.2.2)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(three@0.180.0)

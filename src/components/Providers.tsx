@@ -8,9 +8,10 @@ import { KhaveeProvider } from "@khaveeai/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const realtime = new OpenAIRealtimeProvider({
-    apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY || "",
-    instructions:
-      `${MODEL_INSTRUCTION} ใช้ search_knowledge_base tool เมื่อผู้ใช้ถามคำถามที่ต้องการข้อมูลเฉพาะเจาะจง`,
+    useProxy: true,
+    proxyEndpoint: "/api/negotiate",
+    apiKey: process.env.OPENAI_API_KEY || "",
+    instructions: `${MODEL_INSTRUCTION} ใช้ search_knowledge_base tool เมื่อผู้ใช้ถามคำถามที่ต้องการข้อมูลเฉพาะเจาะจง`,
     tools: [
       {
         name: "search_knowledge_base",

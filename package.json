@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@heroui/react": "^2.8.5",
-    "@khaveeai/core": "^0.1.4",
-    "@khaveeai/providers-openai-realtime": "^0.2.6",
+    "@khaveeai/core": "^0.1.6",
+    "@khaveeai/providers-openai-realtime": "^0.2.8",
     "@khaveeai/providers-rag": "^0.1.1",
     "@khaveeai/react": "^0.2.5",
     "@qdrant/js-client-rest": "^1.15.1",
