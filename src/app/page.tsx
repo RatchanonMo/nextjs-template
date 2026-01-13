@@ -10,7 +10,7 @@ export default function Home() {
   return (
     <AppLayout>
       <VRMViewer />
-      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 space-y-5 w-[calc(100%-40px)]">
+      <div className="absolute bottom-5 left-1/2 -translate-x-1/2 space-y-5 w-full max-w-[calc(100%-40px)]">
         <ChatBox />
         <MenuBox />
       </div>
