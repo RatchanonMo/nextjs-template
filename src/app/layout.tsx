@@ -9,7 +9,7 @@ const prompt = Prompt({
 });
 
 export const metadata: Metadata = {
-  title: "Khavee Computer",
+  title: "Khavee Beverage",
 };
 
 export default function RootLayout({
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${prompt.className}`}>
+      <body className={`${prompt.className} bg-slate-300`}>
         <Providers>{children}</Providers>
       </body>
     </html>

@@ -1,35 +1,40 @@
 "use client";
 
 import { MODEL_INSTRUCTION } from "@/config/instruction";
-import { searchKnowledgeBase } from "@/libs/rag";
+import { useOrderStore } from "@/libs/useOrderStore";
 import { HeroUIProvider } from "@heroui/react";
 import { OpenAIRealtimeProvider } from "@khaveeai/providers-openai-realtime";
 import { KhaveeProvider } from "@khaveeai/react";
 
 export function Providers({ children }: { children: React.ReactNode }) {
+  const { openModal } = useOrderStore();
+
   const realtime = new OpenAIRealtimeProvider({
     useProxy: true,
     proxyEndpoint: "/api/negotiate",
     apiKey: process.env.OPENAI_API_KEY || "",
-    instructions: `${MODEL_INSTRUCTION} ใช้ search_knowledge_base tool เมื่อผู้ใช้ถามคำถามที่ต้องการข้อมูลเฉพาะเจาะจง`,
+    instructions: MODEL_INSTRUCTION,
+    voice: "sage",
+    speed: 4,
     tools: [
       {
-        name: "search_knowledge_base",
+        name: "confirm_order",
         description:
-          "Search the knowledge base for relevant information to answer questions accurately",
+          "เปิด modal ยืนยันการสั่งซื้อเมื่อลูกค้าตัดสินใจเลือกเมนูแล้ว",
         parameters: {
-          query: {
+          item: {
             type: "string",
-            description: "The search query to find relevant information",
+            description: "ชื่อเมนูที่ลูกค้าเลือก เช่น เอสเพรสโซ, คาปูชิโน่, ลาเต้, อเมริกาโน่",
             required: true,
           },
         },
-        execute: async (args: { query: string }) => {
-          console.log("🔍 RAG Search:", args.query);
-
-          const result = await searchKnowledgeBase(args.query);
-          console.log("📄 Context:", result.message);
-          return result;
+        execute: async (args: { item: string }) => {
+          console.log("📦 Opening order confirmation for:", args.item);
+          openModal(args.item);
+          return {
+            success: true,
+            message: `เปิด modal ยืนยันการสั่ง ${args.item} แล้ว`,
+          };
         },
       },
     ],
