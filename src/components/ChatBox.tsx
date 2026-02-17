@@ -16,7 +16,7 @@ export default function ChatBox() {
   const lastMessage = assistantMessages[assistantMessages.length - 1];
 
   useEffect(() => {
-    connect();
+    // connect();
   }, []);
 
   useEffect(() => {
