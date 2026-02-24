@@ -8,8 +8,7 @@ export default function VRMViewer() {
   const controls = useRef<CameraControls>(null);
 
   const animations = {
-    idle: "./animations/idle.fbx",
-    talk: "./animations/talking.fbx",
+    idle: "./animations/sit.fbx",
   };
 
   return (
@@ -21,9 +20,11 @@ export default function VRMViewer() {
           minDistance={1}
           maxDistance={10}
         />
-        <ambientLight intensity={3} />
+        <directionalLight position={[10, 10, 5]} intensity={2} />
+
+        <ambientLight intensity={1} />
         <VRMAvatar
-          src="./models/shark.glb"
+          src="./models/Masscoss.vrm"
           animations={animations}
           position-y={-1.25}
           scale={[0.8, 0.8, 0.8]}
