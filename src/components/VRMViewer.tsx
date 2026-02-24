@@ -2,8 +2,8 @@
 import { VRMAvatar } from "@khaveeai/react";
 import { CameraControls } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
+import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { useRef } from "react";
-import GLBTest from "./GLBTest";
 
 export default function VRMViewer() {
   const controls = useRef<CameraControls>(null);
@@ -15,23 +15,25 @@ export default function VRMViewer() {
 
   return (
     <div className="w-full h-full">
-        <GLBTest />
-      {/* <Canvas camera={{ position: [0.25, 0.25, 2], fov: 100 }}>
-
+      {/* <GLBTest /> */}
+      <Canvas camera={{ position: [0.25, 0.25, 2], fov: 100 }}>
         <CameraControls
           ref={controls}
           maxPolarAngle={Math.PI / 2}
           minDistance={1}
           maxDistance={10}
         />
-        <ambientLight intensity={3} />
+        <ambientLight intensity={1.5} />
+        <directionalLight position={[10, 10, 5]} intensity={5} castShadow />
+
         <VRMAvatar
-          src="./models/shark.glb"
+          src="./models/happy.vrm"
           animations={animations}
           position-y={-1.25}
           scale={[0.8, 0.8, 0.8]}
         />
-      </Canvas> */}
+
+      </Canvas>
     </div>
   );
 }
