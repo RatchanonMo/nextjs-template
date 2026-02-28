@@ -112,6 +112,18 @@ export type SocialLink = {
   type: string;
 };
 
+export type BlogPost = {
+  id: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  content: string;
+  cover_image: string | null; // UUID of directus_files; null until uploaded
+  author: string;
+  published_at: string;
+  tags: string[];
+};
+
 // ---------------------------------------------------------------------------
 // Directus schema — maps collection names to their types
 // ---------------------------------------------------------------------------
@@ -132,4 +144,5 @@ export type DirectusSchema = {
   partners: Partner[];
   about_stats: AboutStat[];
   social_links: SocialLink[];
+  blog_posts: BlogPost[];
 };

@@ -2,10 +2,10 @@ import { Facebook, Instagram, Linkedin } from "lucide-react";
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { label: "Product", href: "#" },
-  { label: "Pricing", href: "#" },
-  { label: "Resources", href: "#" },
-  { label: "About", href: "#" },
+  { label: "Product", href: "/product" },
+  { label: "Pricing", href: "/pricing" },
+  { label: "Blog", href: "/blog" },
+  { label: "About", href: "/about" },
 ];
 
 function TikTokIcon() {
@@ -74,16 +74,32 @@ export default function Footer() {
 
             {/* Social icons */}
             <div className="mt-1 flex items-center gap-4 text-gray-600">
-              <a href="#" aria-label="Facebook" className="hover:text-gray-900 transition-colors">
+              <a
+                href="#"
+                aria-label="Facebook"
+                className="hover:text-gray-900 transition-colors"
+              >
                 <Facebook size={18} />
               </a>
-              <a href="#" aria-label="LinkedIn" className="hover:text-gray-900 transition-colors">
+              <a
+                href="#"
+                aria-label="LinkedIn"
+                className="hover:text-gray-900 transition-colors"
+              >
                 <Linkedin size={18} />
               </a>
-              <a href="#" aria-label="Instagram" className="hover:text-gray-900 transition-colors">
+              <a
+                href="#"
+                aria-label="Instagram"
+                className="hover:text-gray-900 transition-colors"
+              >
                 <Instagram size={18} />
               </a>
-              <a href="#" aria-label="TikTok" className="hover:text-gray-900 transition-colors">
+              <a
+                href="#"
+                aria-label="TikTok"
+                className="hover:text-gray-900 transition-colors"
+              >
                 <TikTokIcon />
               </a>
             </div>

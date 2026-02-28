@@ -6,6 +6,7 @@ import {
   rest,
   staticToken,
   createCollection,
+  createRelation,
   createItems,
   readItems,
   readCollections,
@@ -313,6 +314,59 @@ const COLLECTIONS = [
       { label: "TikTok", href: "#", type: "tiktok" },
     ],
   },
+  {
+    name: "blog_posts",
+    fields: [
+      { field: "slug", type: "string" },
+      { field: "title", type: "string" },
+      { field: "excerpt", type: "text" },
+      { field: "content", type: "text" },
+      {
+        field: "cover_image",
+        type: "uuid",
+        meta: { display: "image", special: ["file"] },
+        schema: { is_nullable: true },
+      },
+      { field: "author", type: "string" },
+      { field: "published_at", type: "string" },
+      { field: "tags", type: "json" },
+    ],
+    relations: [
+      {
+        field: "cover_image",
+        related_collection: "directus_files",
+      },
+    ],
+    seed: [
+      {
+        slug: "5-signs-your-sales-team-is-wasting-time-on-bad-leads",
+        title: "5 Signs Your Sales Team Is Wasting Time on Bad Leads",
+        excerpt: "Most people start prospecting within 10 minutes of opening their CRM — and it's sabotaging their entire pipeline.",
+        content: "Your sales team is working hard. They're making calls, sending emails, and logging activity every day. But at the end of the quarter, the pipeline still looks thin. Sound familiar?\n\nThe problem isn't effort — it's targeting. Here are five signs your team is wasting valuable time on leads that were never going to convert.\n\n**1. You're calling the same cold lists everyone else is using**\n\nIf your lead data comes from a shared database that every competitor also subscribes to, your prospects are already fatigued before you even reach out.\n\n**2. Your reps spend more than 30% of their day on research**\n\nIf your team is piecing together contact info from LinkedIn, Google, and company websites before every outreach, that's a clear signal that your prospecting process needs automation.\n\n**3. Response rates are below 2%**\n\nIndustry average cold email response rates hover around 1–5%. If you're consistently at the bottom of that range, the issue is likely list quality — not your messaging.\n\n**4. You can't define your ICP in one sentence**\n\nIf your ICP is anyone who could use your product, you're targeting everyone and reaching no one.\n\n**5. Most deals come from referrals — not outbound**\n\nOver-reliance on inbound signals tells you your prospecting process isn't generating enough quality first conversations.\n\n**What to do about it**\n\nStart by auditing your last 100 leads against your ICP criteria. How many actually match? Tools like SalePoint AI are built to solve exactly this problem.",
+        author: "SalePoint AI Team",
+        published_at: "2026-01-15T00:00:00.000Z",
+        tags: ["sales", "prospecting", "lead-generation"],
+      },
+      {
+        slug: "how-ai-is-changing-b2b-prospecting-in-southeast-asia",
+        title: "How AI Is Changing B2B Prospecting in Southeast Asia",
+        excerpt: "Traditional lead tools were built for Western markets. Here's why that matters — and what AI-native platforms are doing differently.",
+        content: "B2B sales intelligence has historically been dominated by platforms built for the US and European markets. Salesforce, HubSpot, ZoomInfo — powerful tools, but their data coverage thins out significantly once you move into Southeast Asia.\n\nFor sales teams operating in Thailand, Vietnam, Indonesia, and surrounding markets, this gap has always meant one thing: manual research.\n\n**The SEA data gap**\n\nThe fundamental challenge is that most local businesses in SEA don't maintain active LinkedIn profiles and rarely appear in Western business directories.\n\n**What AI changes**\n\nAI-native platforms can process signals from local sources that traditional tools ignore: Google Business profiles, local web presence, industry registrations, and contextual signals about company size and activity.\n\n**The SalePoint AI approach**\n\nSalePoint AI is built ground-up for markets like Thailand. Instead of indexing the same global databases everyone else uses, we analyze local business data to surface actionable prospects.\n\nIf you're selling in SEA, this is the difference between a full pipeline and an empty one.",
+        author: "SalePoint AI Team",
+        published_at: "2025-10-20T00:00:00.000Z",
+        tags: ["ai", "b2b", "southeast-asia"],
+      },
+      {
+        slug: "build-your-outbound-engine-from-scratch",
+        title: "Build Your Outbound Engine From Scratch",
+        excerpt: "You don't need a 20-person sales team to run effective outbound. Here's the minimal setup that actually works.",
+        content: "Most early-stage companies treat outbound like an afterthought — something you bolt on after product-market fit. That's a mistake.\n\nBuilding your outbound engine early, even imperfectly, teaches you who actually buys your product and why.\n\n**Step 1: Lock down your ICP**\n\nBefore you generate a single lead, you need a crisp Ideal Customer Profile. The specificity feels limiting. It isn't. It's what allows everything else to work.\n\n**Step 2: Build a targeted list — don't rent a generic one**\n\nA list of 200 well-matched prospects will outperform a list of 2,000 generic ones every time.\n\n**Step 3: Write one email worth reading**\n\nYour first outreach email needs to do one thing: earn the right to a conversation. Not sell. Not demo. Just create enough curiosity that the right person replies.\n\n**Step 4: Follow up with purpose**\n\nBuild a 3–5 touch sequence where each message adds new information or perspective. Not just checking in — those get deleted.\n\n**Step 5: Measure and iterate**\n\nTrack open rates, reply rates, and conversion to meeting. Fix one variable at a time. Outbound isn't magic — it's a system.",
+        author: "SalePoint AI Team",
+        published_at: "2025-11-26T00:00:00.000Z",
+        tags: ["outbound", "sales", "startup"],
+      },
+    ],
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -333,7 +387,7 @@ async function collectionHasItems(name) {
   }
 }
 
-async function setupCollection(existing, { name, fields, seed }) {
+async function setupCollection(existing, { name, fields, seed, relations }) {
   // 1. Create collection if it doesn't exist
   if (existing.has(name)) {
     process.stdout.write(`  ⏭  ${name} — already exists`);
@@ -346,11 +400,23 @@ async function setupCollection(existing, { name, fields, seed }) {
         fields: fields.map((f) => ({
           field: f.field,
           type: f.type,
-          meta: { interface: f.type === "json" ? "input-code" : "input" },
-          schema: {},
+          meta: f.meta ?? { interface: f.type === "json" ? "input-code" : "input" },
+          schema: f.schema ?? {},
         })),
       })
     );
+    // Create any M2O relations (e.g. file fields)
+    if (relations?.length) {
+      for (const rel of relations) {
+        await client.request(
+          createRelation({
+            collection: name,
+            field: rel.field,
+            related_collection: rel.related_collection,
+          })
+        );
+      }
+    }
     process.stdout.write(`  ✅  ${name} created`);
   }
 
