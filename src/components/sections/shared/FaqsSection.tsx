@@ -1,9 +1,9 @@
 "use client";
 
 import { Accordion, AccordionItem } from "@heroui/react";
-import { FAQS } from "@/constants/faqs";
+import type { Faq } from "@/types/directus";
 
-export default function FaqsSection() {
+export default function FaqsSection({ faqs }: { faqs: Faq[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       <h2 className="mb-8 text-3xl font-bold text-gray-900 md:text-4xl">
@@ -20,7 +20,7 @@ export default function FaqsSection() {
           indicator: "text-gray-500",
         }}
       >
-        {FAQS.map((faq) => (
+        {faqs.map((faq) => (
           <AccordionItem
             key={faq.question}
             title={faq.question}

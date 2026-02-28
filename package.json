@@ -6,9 +6,11 @@
     "dev": "next dev --turbopack",
     "build": "next build --turbopack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "directus:setup": "node scripts/setup-directus.mjs"
   },
   "dependencies": {
+    "@directus/sdk": "^21.1.0",
     "@heroui/react": "^2.8.5",
     "axios": "^1.12.2",
     "lucide-react": "^0.575.0",

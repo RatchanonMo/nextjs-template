@@ -1,9 +1,9 @@
 "use client";
 
 import { Button } from "@heroui/react";
-import { STEPS } from "@/constants/steps";
+import type { Step } from "@/types/directus";
 
-export default function HowItWorksSection() {
+export default function HowItWorksSection({ steps }: { steps: Step[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
@@ -20,7 +20,7 @@ export default function HowItWorksSection() {
 
       {/* Steps grid */}
       <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-        {STEPS.map((s) => (
+        {steps.map((s) => (
           <div key={s.step} className="flex flex-col gap-4">
             {/* Image placeholder */}
             <div className="aspect-video w-full rounded-2xl bg-gray-200" />

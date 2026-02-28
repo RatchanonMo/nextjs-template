@@ -1,15 +1,19 @@
 "use client";
 import { Button } from "@heroui/react";
 import Link from "next/link";
-import { PRODUCT_FEATURES } from "@/constants/product-features";
+import type { ProductFeature } from "@/types/directus";
 
-export default function AllFeaturesSection() {
+export default function AllFeaturesSection({ features: rawFeatures }: { features: ProductFeature[] }) {
+  const features = rawFeatures.map((f) => ({
+    ...f,
+    capacities: typeof f.capacities === "string" ? JSON.parse(f.capacities) : f.capacities,
+  }));
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       <h2 className="mb-10 text-3xl font-bold text-gray-900">All Features</h2>
 
       <div className="flex flex-col divide-y divide-gray-100">
-        {PRODUCT_FEATURES.map((feature, i) => (
+        {features.map((feature, i) => (
           <div
             key={i}
             className="flex flex-col gap-8 py-10 md:flex-row md:items-center md:gap-12"
@@ -29,7 +33,7 @@ export default function AllFeaturesSection() {
               </div>
 
               <ul className="flex flex-col gap-2">
-                {feature.capacities.map((cap, j) => (
+                {feature.capacities.map((cap: string, j: number) => (
                   <li
                     key={j}
                     className="flex items-center gap-2 text-sm text-gray-700"

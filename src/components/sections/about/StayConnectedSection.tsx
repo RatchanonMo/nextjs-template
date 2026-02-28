@@ -1,5 +1,5 @@
-import { SOCIAL_LINKS } from "@/constants/about";
 import { Facebook, Instagram, Linkedin } from "lucide-react";
+import type { SocialLink } from "@/types/directus";
 import Link from "next/link";
 
 function TikTokIcon({ size = 20 }: { size?: number }) {
@@ -23,12 +23,12 @@ const ICON_MAP: Record<string, React.ComponentType<{ size?: number }>> = {
   tiktok: TikTokIcon,
 };
 
-export default function StayConnectedSection() {
+export default function StayConnectedSection({ socialLinks }: { socialLinks: SocialLink[] }) {
   return (
     <section className="mx-auto max-w-2xl px-6 py-16 text-center">
       {/* Social icons */}
       <div className="mb-6 flex items-center justify-center gap-3">
-        {SOCIAL_LINKS.map((link) => {
+        {socialLinks.map((link) => {
           const Icon = ICON_MAP[link.type];
           return (
             <Link

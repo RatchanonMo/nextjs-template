@@ -1,11 +1,20 @@
 "use client";
 
+import type { PricingBenefit, PricingPlan } from "@/types/directus";
 import { Button } from "@heroui/react";
 import { Check, X } from "lucide-react";
 import Link from "next/link";
-import { PRICING_PLANS } from "@/constants/pricing";
 
-export default function PricingStructureSection() {
+export default function PricingStructureSection({
+  plans: rawPlans,
+}: {
+  plans: PricingPlan[];
+}) {
+  const plans = rawPlans.map((p) => ({
+    ...p,
+    benefits:
+      typeof p.benefits === "string" ? JSON.parse(p.benefits) : p.benefits,
+  }));
   return (
     <section id="pricing-structure" className="mx-auto max-w-6xl px-6 py-16">
       <div className="mb-10 text-center">
@@ -17,7 +26,7 @@ export default function PricingStructureSection() {
 
       {/* Desktop: 3 cards */}
       <div className="hidden gap-4 md:grid md:grid-cols-3">
-        {PRICING_PLANS.map((plan) => (
+        {plans.map((plan) => (
           <div
             key={plan.name}
             className="flex flex-col gap-4 rounded-2xl border border-gray-200 p-6"
@@ -47,8 +56,11 @@ export default function PricingStructureSection() {
             </Button>
 
             <ul className="flex flex-col gap-2">
-              {plan.benefits.map((b, i) => (
-                <li key={i} className="flex items-center gap-2 text-sm text-gray-700">
+              {plan.benefits.map((b: PricingBenefit, i: number) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-2 text-sm text-gray-700"
+                >
                   {b.included ? (
                     <Check size={14} className="shrink-0 text-green-500" />
                   ) : (
@@ -70,7 +82,7 @@ export default function PricingStructureSection() {
               <th className="py-3 text-left font-semibold text-gray-700">
                 Benefits
               </th>
-              {PRICING_PLANS.map((plan) => (
+              {plans.map((plan) => (
                 <th key={plan.name} className="px-2 py-3 text-center">
                   <p className="font-bold text-primary">{plan.name}</p>
                   <p className="text-xs font-normal text-gray-500">
@@ -83,12 +95,12 @@ export default function PricingStructureSection() {
             </tr>
           </thead>
           <tbody>
-            {PRICING_PLANS[0].benefits.map((_, rowIdx) => (
+            {plans[0].benefits.map((_: PricingBenefit, rowIdx: number) => (
               <tr key={rowIdx} className="border-t border-gray-100">
                 <td className="py-3 text-gray-700">
-                  {PRICING_PLANS[0].benefits[rowIdx].label}
+                  {plans[0].benefits[rowIdx].label}
                 </td>
-                {PRICING_PLANS.map((plan) => (
+                {plans.map((plan) => (
                   <td key={plan.name} className="px-2 py-3 text-center">
                     {plan.benefits[rowIdx].included ? (
                       <Check size={14} className="mx-auto text-green-500" />
@@ -101,7 +113,7 @@ export default function PricingStructureSection() {
             ))}
             <tr className="border-t border-gray-100">
               <td />
-              {PRICING_PLANS.map((plan) => (
+              {plans.map((plan) => (
                 <td key={plan.name} className="px-2 py-4 text-center">
                   <Button
                     as={Link}

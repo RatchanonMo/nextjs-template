@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@directus/sdk':
+        specifier: ^21.1.0
+        version: 21.1.0
       '@heroui/react':
         specifier: ^2.8.5
         version: 2.8.5(@types/react@19.2.2)(framer-motion@12.23.24(react-dom@19.1.0(react@19.1.0))(react@19.1.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.15)
@@ -76,6 +79,10 @@ packages:
   '@babel/runtime@7.28.4':
     resolution: {integrity: sha512-Q/N6JNWvIvPnLDvjlE1OUBLPQHH6l3CltCEsHIujp45zQUSSh8K+gHnaEX45yAT1nyngnINhvWtzN+Nb9D8RAQ==}
     engines: {node: '>=6.9.0'}
+
+  '@directus/sdk@21.1.0':
+    resolution: {integrity: sha512-Ig8zZAQDbc7QMIM54N+x71C04lni9MN9yalNAezjDjFdNknTJzupDY7V5cb+kOJL8GsqDE9Bg8xq8xCmkDVs5A==}
+    engines: {node: '>=22'}
 
   '@emnapi/core@1.6.0':
     resolution: {integrity: sha512-zq/ay+9fNIJJtJiZxdTnXS20PllcYMX3OE23ESc4HK/bdYu3cOWYVhsOhVnXALfU/uqJIxn5NBPd9z4v+SfoSg==}
@@ -3083,6 +3090,8 @@ snapshots:
   '@alloc/quick-lru@5.2.0': {}
 
   '@babel/runtime@7.28.4': {}
+
+  '@directus/sdk@21.1.0': {}
 
   '@emnapi/core@1.6.0':
     dependencies:

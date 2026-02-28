@@ -1,6 +1,6 @@
-import { FEATURES } from "@/constants/features";
+import type { Feature } from "@/types/directus";
 
-export default function FeaturesSection() {
+export default function FeaturesSection({ features }: { features: Feature[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
@@ -15,7 +15,7 @@ export default function FeaturesSection() {
 
       {/* Feature cards */}
       <div className="flex flex-col gap-4">
-        {FEATURES.map((feature) => (
+        {features.map((feature) => (
           <div
             key={feature.title}
             className={`${feature.bg} rounded-2xl px-8 py-8`}

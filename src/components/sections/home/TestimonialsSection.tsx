@@ -1,9 +1,9 @@
 "use client";
 
-import { TESTIMONIALS } from "@/constants/testimonials";
 import { useRef, useState } from "react";
+import type { Testimonial } from "@/types/directus";
 
-export default function TestimonialsSection() {
+export default function TestimonialsSection({ testimonials }: { testimonials: Testimonial[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -36,7 +36,7 @@ export default function TestimonialsSection() {
 
       {/* Desktop grid */}
       <div className="hidden gap-4 md:grid md:grid-cols-2">
-        {TESTIMONIALS.map((t) => (
+        {testimonials.map((t) => (
           <TestimonialCard key={t.author} {...t} />
         ))}
       </div>
@@ -48,7 +48,7 @@ export default function TestimonialsSection() {
           onScroll={handleScroll}
           className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth gap-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-          {TESTIMONIALS.map((t) => (
+          {testimonials.map((t) => (
             <div
               key={t.author}
               className="w-full shrink-0 snap-center"
@@ -60,7 +60,7 @@ export default function TestimonialsSection() {
 
         {/* Dots */}
         <div className="mt-4 flex justify-center gap-2">
-          {TESTIMONIALS.map((_, i) => (
+          {testimonials.map((_, i) => (
             <button
               key={i}
               onClick={() => scrollTo(i)}

@@ -1,6 +1,6 @@
-import { TEAM_MEMBERS } from "@/constants/team";
+import type { TeamMember } from "@/types/directus";
 
-export default function TeamSection() {
+export default function TeamSection({ members }: { members: TeamMember[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
       <h2 className="mb-10 text-center text-3xl font-bold text-gray-900">
@@ -8,7 +8,7 @@ export default function TeamSection() {
       </h2>
 
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
-        {TEAM_MEMBERS.map((member) => (
+        {members.map((member) => (
           <div key={member.id} className="flex flex-col gap-3">
             {/* Photo placeholder */}
             <div className="aspect-square w-full rounded-2xl bg-gray-200" />

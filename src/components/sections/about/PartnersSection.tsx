@@ -1,6 +1,6 @@
-import { PARTNERS } from "@/constants/partners";
+import type { Partner } from "@/types/directus";
 
-export default function PartnersSection() {
+export default function PartnersSection({ partners }: { partners: Partner[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
       <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
@@ -15,7 +15,7 @@ export default function PartnersSection() {
 
         {/* Right logo grid */}
         <div className="grid flex-1 grid-cols-4 gap-3">
-          {PARTNERS.map((partner) => (
+          {partners.map((partner) => (
             <div
               key={partner.id}
               className="h-12 rounded-lg bg-gray-200"

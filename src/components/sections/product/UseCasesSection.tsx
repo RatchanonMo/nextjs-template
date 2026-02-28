@@ -1,9 +1,9 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { USE_CASES } from "@/constants/use-cases";
+import type { UseCase } from "@/types/directus";
 
-export default function UseCasesSection() {
+export default function UseCasesSection({ useCases }: { useCases: UseCase[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
@@ -19,18 +19,18 @@ export default function UseCasesSection() {
 
       {/* Desktop 3-col grid */}
       <div className="hidden gap-4 md:grid md:grid-cols-3">
-        {USE_CASES.map((uc, i) => (
+        {useCases.map((uc, i) => (
           <UseCaseCard key={i} {...uc} />
         ))}
       </div>
 
       {/* Mobile carousel */}
-      <MobileCarousel />
+      <MobileCarousel useCases={useCases} />
     </section>
   );
 }
 
-function MobileCarousel() {
+function MobileCarousel({ useCases }: { useCases: UseCase[] }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -55,7 +55,7 @@ function MobileCarousel() {
         onScroll={handleScroll}
         className="flex snap-x snap-mandatory overflow-x-auto scroll-smooth gap-4 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {USE_CASES.map((uc, i) => (
+        {useCases.map((uc, i) => (
           <div key={i} className="w-[85vw] shrink-0 snap-center">
             <UseCaseCard {...uc} />
           </div>
@@ -64,7 +64,7 @@ function MobileCarousel() {
 
       {/* Dots */}
       <div className="mt-4 flex justify-center gap-2">
-        {USE_CASES.map((_, i) => (
+        {useCases.map((_, i) => (
           <button
             key={i}
             onClick={() => scrollTo(i)}

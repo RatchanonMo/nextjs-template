@@ -1,6 +1,6 @@
-import { AUDIENCES } from "@/constants/audiences";
+import type { Audience } from "@/types/directus";
 
-export default function AudiencesSection() {
+export default function AudiencesSection({ audiences }: { audiences: Audience[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
@@ -17,12 +17,12 @@ export default function AudiencesSection() {
 
       {/* Cards grid: 3 cols on desktop, first 3 then 2 centered */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-        {AUDIENCES.slice(0, 3).map((audience) => (
+        {audiences.slice(0, 3).map((audience) => (
           <AudienceCard key={audience.title} {...audience} />
         ))}
         {/* Last 2 centered */}
         <div className="md:col-span-3 grid grid-cols-1 gap-4 md:grid-cols-2 md:mx-auto md:w-2/3">
-          {AUDIENCES.slice(3).map((audience) => (
+          {audiences.slice(3).map((audience) => (
             <AudienceCard key={audience.title} {...audience} />
           ))}
         </div>
@@ -33,11 +33,12 @@ export default function AudiencesSection() {
 
 function AudienceCard({
   title,
-  points,
+  points: rawPoints,
 }: {
   title: string;
-  points: string[];
+  points: string[] | string;
 }) {
+  const points: string[] = typeof rawPoints === "string" ? JSON.parse(rawPoints) : rawPoints;
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-gray-100 p-6 shadow-sm">
       {/* Icon placeholder */}

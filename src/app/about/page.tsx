@@ -5,22 +5,35 @@ import QuoteSection from "@/components/sections/about/QuoteSection";
 import StayConnectedSection from "@/components/sections/about/StayConnectedSection";
 import TeamSection from "@/components/sections/about/TeamSection";
 import VisionMissionSection from "@/components/sections/about/VisionMissionSection";
+import {
+  getAboutStats,
+  getPartners,
+  getSocialLinks,
+  getTeamMembers,
+} from "@/lib/queries/about";
 
 export const metadata = {
   title: "About — Salespoint",
   description: "Learn about the vision, mission, and team behind Salespoint.",
 };
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const [members, partners, stats, socialLinks] = await Promise.all([
+    getTeamMembers(),
+    getPartners(),
+    getAboutStats(),
+    getSocialLinks(),
+  ]);
+
   return (
     <main>
       <AboutHeroSection />
       <VisionMissionSection />
-      <TeamSection />
-      <PartnersSection />
+      <TeamSection members={members} />
+      <PartnersSection partners={partners} />
       <QuoteSection />
-      <AboutStatsSection />
-      <StayConnectedSection />
+      <AboutStatsSection stats={stats} />
+      <StayConnectedSection socialLinks={socialLinks} />
     </main>
   );
 }

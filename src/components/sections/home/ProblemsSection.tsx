@@ -1,6 +1,6 @@
-import { PROBLEMS } from "@/constants/problems";
+import type { Problem } from "@/types/directus";
 
-export default function ProblemsSection() {
+export default function ProblemsSection({ problems }: { problems: Problem[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       <div className="mb-10">
@@ -12,7 +12,7 @@ export default function ProblemsSection() {
       </div>
 
       <div className="grid grid-cols-2 gap-x-12 gap-y-10">
-        {PROBLEMS.map((problem) => (
+        {problems.map((problem) => (
           <div key={problem.label} className="flex flex-col gap-3">
             <div className="h-12 w-12 rounded-full bg-primary-100" />
             <p className="text-base font-medium text-gray-800">

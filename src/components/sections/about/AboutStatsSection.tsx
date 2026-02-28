@@ -1,10 +1,10 @@
-import { ABOUT_STATS } from "@/constants/about";
+import type { AboutStat } from "@/types/directus";
 
-export default function AboutStatsSection() {
+export default function AboutStatsSection({ stats }: { stats: AboutStat[] }) {
   return (
     <section className="bg-primary px-6 py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 md:grid-cols-2">
-        {ABOUT_STATS.map((stat, index) => {
+        {stats.map((stat, index) => {
           const isEven = index % 2 === 1;
           return (
             <div

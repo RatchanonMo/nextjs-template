@@ -3,9 +3,8 @@
 import { Button } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { PAYMENT_METHODS } from "@/constants/pricing";
 
-export default function PaymentSection() {
+export default function PaymentSection({ methods }: { methods: string[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-16">
@@ -37,7 +36,7 @@ export default function PaymentSection() {
 
           {/* Payment method list */}
           <ul className="flex flex-col gap-2">
-            {PAYMENT_METHODS.map((method) => (
+            {methods.map((method) => (
               <li key={method} className="flex items-center gap-2 text-sm text-gray-700">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-green-400" />
                 {method}

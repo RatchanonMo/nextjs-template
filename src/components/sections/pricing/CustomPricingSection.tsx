@@ -3,9 +3,8 @@
 import { Button } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
-import { CUSTOM_PLAN_INCLUDES } from "@/constants/pricing";
 
-export default function CustomPricingSection() {
+export default function CustomPricingSection({ includes }: { includes: string[] }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       <div className="flex flex-col gap-8 md:flex-row md:items-start md:gap-16">
@@ -38,7 +37,7 @@ export default function CustomPricingSection() {
             Custom plans can include
           </h3>
           <ul className="flex flex-col gap-3">
-            {CUSTOM_PLAN_INCLUDES.map((item) => (
+            {includes.map((item) => (
               <li key={item} className="flex items-center gap-2 text-sm text-gray-700">
                 <span className="h-2 w-2 shrink-0 rounded-full bg-green-400" />
                 {item}
