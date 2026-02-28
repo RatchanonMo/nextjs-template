@@ -1,13 +1,23 @@
-"use client";
-import { useStore } from "@/stores/useStore";
-import { Button } from "@heroui/react";
+import AudiencesSection from "@/components/sections/home/AudiencesSection";
+import CtaSection from "@/components/sections/shared/CtaSection";
+import FaqsSection from "@/components/sections/shared/FaqsSection";
+import FeaturesSection from "@/components/sections/home/FeaturesSection";
+import HeroSection from "@/components/sections/home/HeroSection";
+import HowItWorksSection from "@/components/sections/home/HowItWorksSection";
+import ProblemsSection from "@/components/sections/home/ProblemsSection";
+import TestimonialsSection from "@/components/sections/home/TestimonialsSection";
 
 export default function Home() {
-  const { count, inc } = useStore();
   return (
-    <div>
-      <Button color="primary" onPress={inc}>Increment</Button>
-      <p>Count: {count}</p>
-    </div>
+    <main>
+      <HeroSection />
+      <ProblemsSection />
+      <FeaturesSection />
+      <HowItWorksSection />
+      <AudiencesSection />
+      <TestimonialsSection />
+      <FaqsSection />
+      <CtaSection />
+    </main>
   );
 }
