@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@heroui/react";
+import Image from "next/image";
 import Link from "next/link";
 import type { ProductFeature } from "@/types/directus";
 
@@ -18,8 +19,13 @@ export default function AllFeaturesSection({ features: rawFeatures }: { features
             key={i}
             className="flex flex-col gap-8 py-10 md:flex-row md:items-center md:gap-12"
           >
-            {/* Image placeholder */}
-            <div className="aspect-4/3 w-full shrink-0 rounded-2xl bg-gray-200 md:w-80" />
+            {feature.image ? (
+              <div className="relative aspect-4/3 w-full shrink-0 overflow-hidden rounded-2xl md:w-80">
+                <Image src={feature.image} alt={feature.name} fill className="object-cover" />
+              </div>
+            ) : (
+              <div className="aspect-4/3 w-full shrink-0 rounded-2xl bg-gray-200 md:w-80" />
+            )}
 
             {/* Content */}
             <div className="flex flex-1 flex-col gap-4">

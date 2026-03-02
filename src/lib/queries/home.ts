@@ -1,5 +1,6 @@
 import { readItems } from "@directus/sdk";
 import directus from "@/lib/directus";
+import { assetUrl } from "@/lib/asset-url";
 import { PROBLEMS } from "@/constants/problems";
 import { FEATURES } from "@/constants/features";
 import { STEPS } from "@/constants/steps";
@@ -50,9 +51,14 @@ export async function getAudiences(): Promise<Audience[]> {
     const data = await directus.request(
       readItems("audiences", { limit: -1, sort: ["id"] })
     );
-    if (data?.length) return data as Audience[];
+    if (data?.length)
+      return (data as Audience[]).map((a) => ({
+        ...a,
+        points: typeof a.points === "string" ? JSON.parse(a.points) : a.points ?? [],
+        icon: assetUrl(a.icon),
+      }));
   } catch {}
-  return AUDIENCES.map((a, i) => ({ id: i + 1, ...a }));
+  return AUDIENCES.map((a, i) => ({ id: i + 1, ...a, icon: null }));
 }
 
 export async function getTestimonials(): Promise<Testimonial[]> {

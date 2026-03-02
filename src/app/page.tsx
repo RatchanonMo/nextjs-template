@@ -14,9 +14,10 @@ import {
   getSteps,
   getTestimonials,
 } from "@/lib/queries/home";
+import { getSiteAssets } from "@/lib/queries/site";
 
 export default async function Home() {
-  const [problems, features, steps, audiences, testimonials, faqs] =
+  const [problems, features, steps, audiences, testimonials, faqs, assets] =
     await Promise.all([
       getProblems(),
       getFeatures(),
@@ -24,14 +25,25 @@ export default async function Home() {
       getAudiences(),
       getTestimonials(),
       getFaqs(),
+      getSiteAssets(),
     ]);
 
   return (
     <main>
-      <HeroSection />
+      <HeroSection
+        imageSrc={assets["home_hero"]}
+        avatarSrcs={
+          ["hero_avatar_1", "hero_avatar_2", "hero_avatar_3", "hero_avatar_4", "hero_avatar_5"]
+            .map((k) => assets[k])
+            .filter((v): v is string => Boolean(v))
+        }
+      />
       <ProblemsSection problems={problems} />
       <FeaturesSection features={features} />
-      <HowItWorksSection steps={steps} />
+      <HowItWorksSection
+        steps={steps}
+        stepImages={[assets["home_step_1"], assets["home_step_2"], assets["home_step_3"]]}
+      />
       <AudiencesSection audiences={audiences} />
       <TestimonialsSection testimonials={testimonials} />
       <FaqsSection faqs={faqs} />

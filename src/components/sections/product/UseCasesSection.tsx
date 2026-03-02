@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import type { UseCase } from "@/types/directus";
 
 export default function UseCasesSection({ useCases }: { useCases: UseCase[] }) {
@@ -82,14 +83,21 @@ function MobileCarousel({ useCases }: { useCases: UseCase[] }) {
 function UseCaseCard({
   title,
   description,
+  icon,
 }: {
   title: string;
   description: string;
+  icon: string | null;
 }) {
   return (
     <div className="flex flex-col gap-4 rounded-2xl bg-gray-50 p-6">
-      {/* Icon placeholder */}
-      <div className="h-12 w-12 rounded-full bg-primary-200" />
+      {icon ? (
+        <div className="relative h-12 w-12 overflow-hidden rounded-full">
+          <Image src={icon} alt={title} fill className="object-cover" />
+        </div>
+      ) : (
+        <div className="h-12 w-12 rounded-full bg-primary-200" />
+      )}
       <h3 className="text-base font-bold text-gray-900">{title}</h3>
       <p className="text-sm leading-relaxed text-gray-500">{description}</p>
     </div>

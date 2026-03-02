@@ -1,9 +1,10 @@
 "use client";
 import { Button } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductHeroSection() {
+export default function ProductHeroSection({ imageSrc }: { imageSrc?: string }) {
   return (
     <section className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:flex-row md:items-center md:gap-16 md:py-20">
       {/* Text */}
@@ -29,8 +30,14 @@ export default function ProductHeroSection() {
         </Button>
       </div>
 
-      {/* Image placeholder */}
-      <div className="aspect-4/3 w-full flex-1 rounded-2xl bg-gray-200 md:max-w-lg" />
+      {/* Hero image */}
+      {imageSrc ? (
+        <div className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-2xl md:max-w-lg">
+          <Image src={imageSrc} alt="Product hero" fill className="object-cover" priority />
+        </div>
+      ) : (
+        <div className="aspect-4/3 w-full flex-1 rounded-2xl bg-gray-200 md:max-w-lg" />
+      )}
     </section>
   );
 }

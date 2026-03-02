@@ -1,4 +1,6 @@
-export default function AboutHeroSection() {
+import Image from "next/image";
+
+export default function AboutHeroSection({ imageSrc }: { imageSrc?: string }) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-12 md:py-20">
       <div className="mb-8 flex flex-col gap-3">
@@ -12,8 +14,14 @@ export default function AboutHeroSection() {
         </p>
       </div>
 
-      {/* Media placeholder */}
-      <div className="aspect-video w-full rounded-3xl bg-gray-200" />
+      {/* Hero media */}
+      {imageSrc ? (
+        <div className="relative aspect-video w-full overflow-hidden rounded-3xl">
+          <Image src={imageSrc} alt="About hero" fill className="object-cover" priority />
+        </div>
+      ) : (
+        <div className="aspect-video w-full rounded-3xl bg-gray-200" />
+      )}
     </section>
   );
 }

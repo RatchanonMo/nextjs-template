@@ -1,5 +1,6 @@
 import { readItems } from "@directus/sdk";
 import directus from "@/lib/directus";
+import { assetUrl } from "@/lib/asset-url";
 import { TEAM_MEMBERS } from "@/constants/team";
 import { PARTNERS } from "@/constants/partners";
 import { ABOUT_STATS, SOCIAL_LINKS } from "@/constants/about";
@@ -10,9 +11,10 @@ export async function getTeamMembers(): Promise<TeamMember[]> {
     const data = await directus.request(
       readItems("team_members", { limit: -1, sort: ["id"] })
     );
-    if (data?.length) return data as TeamMember[];
+    if (data?.length)
+      return (data as TeamMember[]).map((m) => ({ ...m, photo: assetUrl(m.photo) }));
   } catch {}
-  return TEAM_MEMBERS;
+  return TEAM_MEMBERS.map((m) => ({ ...m, photo: null }));
 }
 
 export async function getPartners(): Promise<Partner[]> {
@@ -30,9 +32,10 @@ export async function getAboutStats(): Promise<AboutStat[]> {
     const data = await directus.request(
       readItems("about_stats", { limit: -1, sort: ["id"] })
     );
-    if (data?.length) return data as AboutStat[];
+    if (data?.length)
+      return (data as AboutStat[]).map((s) => ({ ...s, icon: assetUrl(s.icon) }));
   } catch {}
-  return ABOUT_STATS;
+  return ABOUT_STATS.map((s) => ({ ...s, icon: null }));
 }
 
 export async function getSocialLinks(): Promise<SocialLink[]> {

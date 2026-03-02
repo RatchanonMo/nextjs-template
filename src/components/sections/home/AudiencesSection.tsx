@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Audience } from "@/types/directus";
 
 export default function AudiencesSection({ audiences }: { audiences: Audience[] }) {
@@ -34,15 +35,22 @@ export default function AudiencesSection({ audiences }: { audiences: Audience[] 
 function AudienceCard({
   title,
   points: rawPoints,
+  icon,
 }: {
   title: string;
   points: string[] | string;
+  icon: string | null;
 }) {
   const points: string[] = typeof rawPoints === "string" ? JSON.parse(rawPoints) : rawPoints;
   return (
     <div className="flex flex-col gap-4 rounded-2xl border border-gray-100 p-6 shadow-sm">
-      {/* Icon placeholder */}
-      <div className="h-10 w-10 rounded-full bg-primary-200" />
+      {icon ? (
+        <div className="relative h-10 w-10 overflow-hidden rounded-full">
+          <Image src={icon} alt={title} fill className="object-cover" />
+        </div>
+      ) : (
+        <div className="h-10 w-10 rounded-full bg-primary-200" />
+      )}
       <h3 className="text-base font-bold text-gray-900">{title}</h3>
       <ul className="flex flex-col gap-2">
         {points.map((point) => (

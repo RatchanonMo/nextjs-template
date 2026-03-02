@@ -107,7 +107,14 @@ const COLLECTIONS = [
     fields: [
       { field: "title", type: "string" },
       { field: "points", type: "json" },
+      {
+        field: "icon",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
     ],
+    relations: [{ field: "icon", related_collection: "directus_files" }],
     seed: [
       {
         title: "Sales Representatives",
@@ -173,7 +180,14 @@ const COLLECTIONS = [
       { field: "capacities", type: "json" },
       { field: "buttonLabel", type: "string" },
       { field: "buttonHref", type: "string" },
+      {
+        field: "image",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
     ],
+    relations: [{ field: "image", related_collection: "directus_files" }],
     seed: [
       {
         name: "Feature's Name",
@@ -196,7 +210,14 @@ const COLLECTIONS = [
     fields: [
       { field: "title", type: "string" },
       { field: "description", type: "text" },
+      {
+        field: "icon",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
     ],
+    relations: [{ field: "icon", related_collection: "directus_files" }],
     seed: [
       { title: "Define Your Ideal Customer Profile", description: "Tell SalePoint AI who you want to sell to. Industry, company size, role, and target market. We focus only on people who matter to your sales goal." },
       { title: "Define Your Ideal Customer Profile", description: "Tell SalePoint AI who you want to sell to. Industry, company size, role, and target market. We focus only on people who matter to your sales goal." },
@@ -263,7 +284,16 @@ const COLLECTIONS = [
   },
   {
     name: "payment_methods",
-    fields: [{ field: "method", type: "string" }],
+    fields: [
+      { field: "method", type: "string" },
+      {
+        field: "icon",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
+    ],
+    relations: [{ field: "icon", related_collection: "directus_files" }],
     seed: [
       { method: "Credit and debit cards" },
       { method: "Bank or wire transfer (for eligible plans)" },
@@ -276,7 +306,14 @@ const COLLECTIONS = [
     fields: [
       { field: "name", type: "string" },
       { field: "role", type: "string" },
+      {
+        field: "photo",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
     ],
+    relations: [{ field: "photo", related_collection: "directus_files" }],
     seed: [
       { name: "Lorem Ipsum", role: "Chief Executive Officer" },
       { name: "Lorem Ipsum", role: "Chief Technology Officer" },
@@ -294,7 +331,14 @@ const COLLECTIONS = [
     fields: [
       { field: "value", type: "string" },
       { field: "description", type: "string" },
+      {
+        field: "icon",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
     ],
+    relations: [{ field: "icon", related_collection: "directus_files" }],
     seed: [
       { value: "Placeholder", description: "Lorem ipsum dolor sit amet" },
       { value: "Placeholder", description: "Lorem ipsum dolor sit amet" },
@@ -320,11 +364,11 @@ const COLLECTIONS = [
       { field: "slug", type: "string" },
       { field: "title", type: "string" },
       { field: "excerpt", type: "text" },
-      { field: "content", type: "text" },
+      { field: "content", type: "text", meta: { interface: "input-rich-text-html" } },
       {
         field: "cover_image",
         type: "uuid",
-        meta: { display: "image", special: ["file"] },
+        meta: { display: "image", special: ["file"], interface: "file-image" },
         schema: { is_nullable: true },
       },
       { field: "author", type: "string" },
@@ -365,6 +409,66 @@ const COLLECTIONS = [
         published_at: "2025-11-26T00:00:00.000Z",
         tags: ["outbound", "sales", "startup"],
       },
+    ],
+  },
+  {
+    name: "blog_banners",
+    fields: [
+      { field: "title", type: "string" },
+      { field: "subtitle", type: "text" },
+      {
+        field: "image",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
+      { field: "link_label", type: "string" },
+      { field: "link_href", type: "string" },
+      { field: "sort", type: "integer", schema: { default_value: 1 } },
+      { field: "status", type: "string", schema: { default_value: "published" } },
+    ],
+    relations: [{ field: "image", related_collection: "directus_files" }],
+    seed: [
+      {
+        title: "Insights on Sales & AI",
+        subtitle: "Tips, guides, and strategies for modern B2B sales teams in Southeast Asia.",
+        image: null,
+        link_label: "Browse articles",
+        link_href: "#posts",
+        sort: 1,
+        status: "published",
+      },
+    ],
+  },
+  {
+    name: "site_assets",
+    fields: [
+      {
+        field: "key",
+        type: "string",
+        meta: { note: "Unique identifier: home_hero | home_step_1 | home_step_2 | home_step_3 | product_hero | about_hero" },
+      },
+      {
+        field: "image",
+        type: "uuid",
+        meta: { display: "image", special: ["file"], interface: "file-image" },
+        schema: { is_nullable: true },
+      },
+      { field: "alt", type: "string" },
+    ],
+    relations: [{ field: "image", related_collection: "directus_files" }],
+    seed: [
+      { key: "home_hero", image: null, alt: "Home hero image" },
+      { key: "home_step_1", image: null, alt: "How it works step 1" },
+      { key: "home_step_2", image: null, alt: "How it works step 2" },
+      { key: "home_step_3", image: null, alt: "How it works step 3" },
+      { key: "product_hero", image: null, alt: "Product hero image" },
+      { key: "about_hero", image: null, alt: "About hero image" },
+      { key: "hero_avatar_1", image: null, alt: "Trusted customer avatar 1" },
+      { key: "hero_avatar_2", image: null, alt: "Trusted customer avatar 2" },
+      { key: "hero_avatar_3", image: null, alt: "Trusted customer avatar 3" },
+      { key: "hero_avatar_4", image: null, alt: "Trusted customer avatar 4" },
+      { key: "hero_avatar_5", image: null, alt: "Trusted customer avatar 5" },
     ],
   },
 ];

@@ -2,9 +2,16 @@
 
 import { Button } from "@heroui/react";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
-export default function HeroSection() {
+export default function HeroSection({
+  imageSrc,
+  avatarSrcs = [],
+}: {
+  imageSrc?: string;
+  avatarSrcs?: string[];
+}) {
   return (
     <section className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-10 px-6 py-12 md:flex-row md:gap-16 md:py-20">
       {/* Text content */}
@@ -39,15 +46,27 @@ export default function HeroSection() {
             <span className="text-sm font-medium text-gray-500">Trusted by</span>
             <div className="flex items-center gap-3">
               {Array.from({ length: 5 }).map((_, i) => (
-                <div key={i} className="h-9 w-9 rounded-full bg-gray-200" />
+                avatarSrcs[i] ? (
+                  <div key={i} className="relative h-9 w-9 overflow-hidden rounded-full">
+                    <Image src={avatarSrcs[i]} alt={`Trusted customer ${i + 1}`} fill className="object-cover" />
+                  </div>
+                ) : (
+                  <div key={i} className="h-9 w-9 rounded-full bg-gray-200" />
+                )
               ))}
             </div>
           </div>
         </div>
       </div>
 
-      {/* Image placeholder */}
-      <div className="aspect-4/3 w-full flex-1 rounded-2xl bg-gray-200 md:max-w-lg" />
+      {/* Hero image */}
+      {imageSrc ? (
+        <div className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-2xl md:max-w-lg">
+          <Image src={imageSrc} alt="Hero" fill className="object-cover" priority />
+        </div>
+      ) : (
+        <div className="aspect-4/3 w-full flex-1 rounded-2xl bg-gray-200 md:max-w-lg" />
+      )}
     </section>
   );
 }

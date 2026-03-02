@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { getBlogPost, getBlogPosts } from "@/lib/queries/blog";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 // ---------------------------------------------------------------------------
 // Static params for prerendering
 // ---------------------------------------------------------------------------
@@ -41,40 +43,6 @@ function formatDate(iso: string) {
     day: "numeric",
     year: "numeric",
   });
-}
-
-/** Turns plain text (paragraphs separated by \n\n) into <p> elements.
- *  Lines starting with ** ... ** are rendered as bold headings. */
-function renderContent(content: string) {
-  return content
-    .split(/\n\n+/)
-    .filter(Boolean)
-    .map((block, i) => {
-      // Bold "heading" — **text**
-      if (block.startsWith("**") && block.endsWith("**")) {
-        return (
-          <h3 key={i} className="mt-8 text-xl font-bold text-gray-900">
-            {block.slice(2, -2)}
-          </h3>
-        );
-      }
-
-      // Inline bold within a paragraph
-      const parts = block.split(/(\*\*[^*]+\*\*)/g);
-      return (
-        <p key={i} className="leading-8 text-gray-700">
-          {parts.map((part, j) =>
-            part.startsWith("**") && part.endsWith("**") ? (
-              <strong key={j} className="font-semibold text-gray-900">
-                {part.slice(2, -2)}
-              </strong>
-            ) : (
-              part
-            )
-          )}
-        </p>
-      );
-    });
 }
 
 // ---------------------------------------------------------------------------
@@ -152,9 +120,10 @@ export default async function BlogPostPage({
       )}
 
       {/* Body */}
-      <article className="flex flex-col gap-5 text-base">
-        {renderContent(post.content)}
-      </article>
+      <article
+        className="blog-content"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
       {/* Footer divider */}
       <div className="mt-16 border-t border-gray-100 pt-10">

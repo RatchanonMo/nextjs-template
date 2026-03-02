@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { TeamMember } from "@/types/directus";
 
 export default function TeamSection({ members }: { members: TeamMember[] }) {
@@ -10,8 +11,13 @@ export default function TeamSection({ members }: { members: TeamMember[] }) {
       <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
         {members.map((member) => (
           <div key={member.id} className="flex flex-col gap-3">
-            {/* Photo placeholder */}
-            <div className="aspect-square w-full rounded-2xl bg-gray-200" />
+            {member.photo ? (
+              <div className="relative aspect-square w-full overflow-hidden rounded-2xl">
+                <Image src={member.photo} alt={member.name} fill className="object-cover" />
+              </div>
+            ) : (
+              <div className="aspect-square w-full rounded-2xl bg-gray-200" />
+            )}
             <div className="flex flex-col gap-0.5">
               <span className="font-semibold text-gray-900">{member.name}</span>
               <span className="text-sm text-gray-500">{member.role}</span>

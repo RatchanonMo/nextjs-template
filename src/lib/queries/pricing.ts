@@ -1,5 +1,6 @@
 import { readItems } from "@directus/sdk";
 import directus from "@/lib/directus";
+import { assetUrl } from "@/lib/asset-url";
 import {
   PRICING_PLANS,
   CUSTOM_PLAN_INCLUDES,
@@ -28,13 +29,13 @@ export async function getCustomPlanIncludes(): Promise<string[]> {
   return CUSTOM_PLAN_INCLUDES;
 }
 
-export async function getPaymentMethods(): Promise<string[]> {
+export async function getPaymentMethods(): Promise<PaymentMethod[]> {
   try {
     const data = await directus.request(
       readItems("payment_methods", { limit: -1, sort: ["id"] })
     );
     if (data?.length)
-      return (data as PaymentMethod[]).map((d) => d.method);
+      return (data as PaymentMethod[]).map((d) => ({ ...d, icon: assetUrl(d.icon) }));
   } catch {}
-  return PAYMENT_METHODS;
+  return PAYMENT_METHODS.map((method, i) => ({ id: i + 1, method, icon: null }));
 }

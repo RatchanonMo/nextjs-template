@@ -11,6 +11,7 @@ import {
   getSocialLinks,
   getTeamMembers,
 } from "@/lib/queries/about";
+import { getSiteAssets } from "@/lib/queries/site";
 
 export const metadata = {
   title: "About — Salespoint",
@@ -18,16 +19,17 @@ export const metadata = {
 };
 
 export default async function AboutPage() {
-  const [members, partners, stats, socialLinks] = await Promise.all([
+  const [members, partners, stats, socialLinks, assets] = await Promise.all([
     getTeamMembers(),
     getPartners(),
     getAboutStats(),
     getSocialLinks(),
+    getSiteAssets(),
   ]);
 
   return (
     <main>
-      <AboutHeroSection />
+      <AboutHeroSection imageSrc={assets["about_hero"]} />
       <VisionMissionSection />
       <TeamSection members={members} />
       <PartnersSection partners={partners} />

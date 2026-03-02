@@ -1,9 +1,16 @@
 "use client";
 
 import { Button } from "@heroui/react";
+import Image from "next/image";
 import type { Step } from "@/types/directus";
 
-export default function HowItWorksSection({ steps }: { steps: Step[] }) {
+export default function HowItWorksSection({
+  steps,
+  stepImages = [],
+}: {
+  steps: Step[];
+  stepImages?: string[];
+}) {
   return (
     <section className="mx-auto max-w-6xl px-6 py-16">
       {/* Header */}
@@ -20,10 +27,16 @@ export default function HowItWorksSection({ steps }: { steps: Step[] }) {
 
       {/* Steps grid */}
       <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
-        {steps.map((s) => (
+        {steps.map((s, i) => (
           <div key={s.step} className="flex flex-col gap-4">
-            {/* Image placeholder */}
-            <div className="aspect-video w-full rounded-2xl bg-gray-200" />
+            {/* Step image */}
+            {stepImages[i] ? (
+              <div className="relative aspect-video w-full overflow-hidden rounded-2xl">
+                <Image src={stepImages[i]} alt={s.title} fill className="object-cover" />
+              </div>
+            ) : (
+              <div className="aspect-video w-full rounded-2xl bg-gray-200" />
+            )}
             {/* Step badge */}
             <Button
               color="primary"

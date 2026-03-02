@@ -1,21 +1,19 @@
 import { readItems } from "@directus/sdk";
 import directus from "@/lib/directus";
-import { BLOG_POSTS } from "@/constants/blog";
-import type { BlogPost } from "@/types/directus";
+import { assetUrl } from "@/lib/asset-url";
+import { BLOG_BANNERS, BLOG_POSTS } from "@/constants/blog";
+import type { BlogBanner, BlogPost } from "@/types/directus";
 
 function normalize(post: BlogPost): BlogPost {
-  const DIRECTUS_URL = process.env.DIRECTUS_URL ?? "http://localhost:8055";
-  const DIRECTUS_TOKEN = process.env.DIRECTUS_TOKEN ?? "";
-  const cover = post.cover_image;
-  const tokenParam = DIRECTUS_TOKEN ? `?access_token=${DIRECTUS_TOKEN}` : "";
   return {
     ...post,
     tags: typeof post.tags === "string" ? JSON.parse(post.tags) : post.tags ?? [],
-    cover_image:
-      cover && !cover.startsWith("http")
-        ? `${DIRECTUS_URL}/assets/${cover}${tokenParam}`
-        : cover ?? null,
+    cover_image: assetUrl(post.cover_image),
   };
+}
+
+function normalizeBanner(banner: BlogBanner): BlogBanner {
+  return { ...banner, image: assetUrl(banner.image) };
 }
 
 export async function getBlogPosts(): Promise<BlogPost[]> {
@@ -28,7 +26,9 @@ export async function getBlogPosts(): Promise<BlogPost[]> {
       })
     );
     if (data?.length) return (data as BlogPost[]).map(normalize);
-  } catch {}
+  } catch (e) {
+    console.error("[getBlogPosts]", e);
+  }
   return BLOG_POSTS;
 }
 
@@ -42,6 +42,25 @@ export async function getBlogPost(slug: string): Promise<BlogPost | null> {
       })
     );
     if (data?.length) return normalize(data[0] as BlogPost);
-  } catch {}
+  } catch (e) {
+    console.error("[getBlogPost]", e);
+  }
   return BLOG_POSTS.find((p) => p.slug === slug) ?? null;
+}
+
+export async function getBlogBanners(): Promise<BlogBanner[]> {
+  try {
+    const data = await directus.request(
+      readItems("blog_banners", {
+        filter: { status: { _eq: "published" } },
+        sort: ["sort"],
+        limit: -1,
+        fields: ["*"],
+      })
+    );
+    if (data?.length) return (data as BlogBanner[]).map(normalizeBanner);
+  } catch (e) {
+    console.error("[getBlogBanners]", e);
+  }
+  return BLOG_BANNERS;
 }
