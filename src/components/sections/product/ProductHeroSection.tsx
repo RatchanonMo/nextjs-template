@@ -1,43 +1,44 @@
 "use client";
 import { Button } from "@heroui/react";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ProductHeroSection({ imageSrc }: { imageSrc?: string }) {
+export default function ProductHeroSection() {
   return (
-    <section className="mx-auto flex max-w-6xl flex-col gap-10 px-6 py-12 md:flex-row md:items-center md:gap-16 md:py-20">
+    <section className="mx-auto flex max-w-7xl flex-col items-center gap-10 px-6 py-16 md:flex-row md:gap-12 md:py-64">
       {/* Text */}
       <div className="flex flex-1 flex-col gap-6">
-        <h1 className="text-4xl font-bold leading-tight text-gray-900 md:text-5xl">
-          Understand Local Businesses
-          <br className="hidden md:block" /> Before You Act
+        <h1 className="text-4xl font-bold leading-tight text-gray-900 md:text-5xl max-w-2xl">
+          Research done.
+          Leads enriched.
+          Pipeline ready.
         </h1>
-        <p className="max-w-md text-base text-gray-500">
-          Salepoint AI provides structured local business intelligence built on
-          Google business data and AI analysis.
+        <p className="max-w-sm text-base text-gray-500">
+          Offload all your prospecting work to Salespoint AI Agent and just
+          reach out and close the deals.
         </p>
         <Button
           as={Link}
           href="#"
           color="primary"
-          radius="full"
+          radius="lg"
           size="lg"
-          className="max-w-max font-semibold"
-          endContent={<ArrowRight size={16} />}
+          className="w-fit font-semibold bg-linear-to-r from-primary to-secondary"
         >
-          Explore the Product
+          Get Started
         </Button>
       </div>
 
-      {/* Hero image */}
-      {imageSrc ? (
-        <div className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-2xl md:max-w-lg">
-          <Image src={imageSrc} alt="Product hero" fill className="object-cover" priority />
-        </div>
-      ) : (
-        <div className="aspect-4/3 w-full flex-1 rounded-2xl bg-gray-200 md:max-w-lg" />
-      )}
+      {/* Hero screenshot with purple glow border */}
+      <div className="absolute right-0 flex-1 ">
+        <Image
+          src="/images/product/hero.svg"
+          alt="Salespoint dashboard"
+          width={700}
+          height={720}
+          priority
+        />
+      </div>
     </section>
   );
 }

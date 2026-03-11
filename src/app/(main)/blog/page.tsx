@@ -22,7 +22,7 @@ function formatDate(iso: string) {
 
 function BlogCard({ post }: { post: BlogPost }) {
   return (
-    <article className="group border-b-2 border-gray-100 py-10 last:border-0">
+    <article className="group border-b border-gray-100 py-10 last:border-0">
       <Link href={`/blog/${post.slug}`} className="flex items-start justify-between gap-8">
         {/* Text */}
         <div className="flex min-w-0 flex-1 flex-col gap-3">
@@ -31,27 +31,27 @@ function BlogCard({ post }: { post: BlogPost }) {
               {post.tags.slice(0, 2).map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-gray-100 px-3 py-0.5 text-xs font-medium text-gray-500"
+                  className="rounded-full bg-purple-50 px-3 py-0.5 text-xs font-semibold text-purple-600"
                 >
                   {tag}
                 </span>
               ))}
             </div>
           )}
-          <h2 className="text-xl font-bold leading-snug text-gray-900 group-hover:text-primary transition-colors md:text-2xl">
+          <h2 className="text-xl font-bold leading-snug text-gray-900 transition-colors group-hover:text-primary md:text-2xl">
             {post.title}
           </h2>
           <p className="line-clamp-2 text-sm leading-relaxed text-gray-500">
             {post.excerpt}
           </p>
           <div className="flex items-center gap-2 text-sm text-gray-400">
-            <span className="text-primary">✦</span>
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">✦</span>
             <span>{formatDate(post.published_at)}</span>
           </div>
         </div>
 
         {post.cover_image && (
-          <div className="relative h-24 w-32 shrink-0 overflow-hidden rounded-lg md:h-32 md:w-48">
+          <div className="relative h-24 w-32 shrink-0 overflow-hidden rounded-xl md:h-32 md:w-48">
             <Image
               src={post.cover_image}
               alt={post.title}
@@ -98,8 +98,13 @@ export default async function BlogPage({
       <div id="posts" className="mx-auto max-w-6xl px-6 py-16">
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl font-bold text-gray-900 md:text-5xl">Blog</h1>
-          <p className="mt-3 text-base text-gray-500">
+          <div className="mb-4 inline-flex items-center rounded-full border border-purple-200 bg-purple-50 px-4 py-1 text-xs font-semibold text-purple-600">
+            Insights & Updates
+          </div>
+          <h1 className="text-4xl font-bold md:text-5xl">
+            <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Blog</span>
+          </h1>
+          <p className="mt-3 max-w-md text-base text-gray-500">
             Insights on sales, prospecting, and AI-powered growth.
           </p>
         </div>

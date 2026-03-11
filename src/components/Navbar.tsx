@@ -1,29 +1,29 @@
 "use client";
 
 import { Button, Link } from "@heroui/react";
-import { ChevronDown, Globe } from "lucide-react";
 import Image from "next/image";
 import NextLink from "next/link";
 
 const NAV_LINKS = [
   { label: "Product", href: "/product" },
+  { label: "Agent", href: "/agent" },
+  { label: "Blogs", href: "/blog" },
   { label: "Pricing", href: "/pricing" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/about" },
 ];
 
-export default function AppNavbar() {
+export default function AppNavbar({ dark = false }: { dark?: boolean }) {
+  const linkColor = dark ? "text-white/80 hover:text-white" : "";
   return (
-    <header className="sticky top-0 z-50 border-b border-gray-100 bg-white">
-      {/* ── Desktop (single row) ── */}
+    <header className={`sticky top-0 z-50 border-b ${dark ? "border-white/10 bg-black" : "border-gray-100 bg-white"}`}>
+      {/* ── Desktop ── */}
       <div className="mx-auto hidden max-w-7xl items-center px-6 py-3 md:flex">
         {/* Logo */}
         <NextLink href="/" className="shrink-0">
-          <Image src="/images/logo.png" alt="Salespoint" width={130} height={32} priority />
+          <Image src="/images/logo.png" alt="Salespoint" width={130} height={32} priority className={dark ? "brightness-0 invert" : ""} />
         </NextLink>
 
-        {/* Nav links — center */}
-        <nav className="flex flex-1 items-center justify-center gap-8">
+        {/* Nav links — left */}
+        <nav className="flex flex-1 items-center justify-start gap-8 ml-10">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
@@ -31,7 +31,7 @@ export default function AppNavbar() {
               href={link.href}
               color="foreground"
               size="sm"
-              className="font-medium"
+              className={`font-medium ${linkColor}`}
             >
               {link.label}
             </Link>
@@ -39,68 +39,43 @@ export default function AppNavbar() {
         </nav>
 
         {/* Actions — right */}
-        <div className="flex shrink-0 items-center gap-2">
-          <Link as={NextLink} href="#" color="foreground" size="sm" className="font-medium px-2">
-            Log In
+        <div className="flex shrink-0 items-center gap-3">
+          <Link as={NextLink} href="#" color="foreground" size="sm" className={`font-medium ${linkColor}`}>
+            contact sales
           </Link>
-          <Button
-            variant="light"
-            size="sm"
-            startContent={<Globe size={14} />}
-            endContent={<ChevronDown size={14} />}
-            className="font-medium text-gray-700"
-          >
-            EN
-          </Button>
           <Button
             as={NextLink}
             href="#"
-            color="default"
-            radius="full"
+            radius="md"
             size="sm"
-            className="bg-gray-900 font-semibold text-white hover:bg-gray-700"
+            className="font-semibold bg-linear-to-r from-primary to-secondary text-white"
           >
-            Contact Us
+            get started
           </Button>
         </div>
       </div>
 
       {/* ── Mobile (two rows) ── */}
       <div className="md:hidden">
-        {/* Row 1: Logo + actions */}
+        {/* Row 1: Logo + CTA */}
         <div className="flex items-center justify-between px-4 py-3">
           <NextLink href="/">
-            <Image src="/images/logo.png" alt="Salespoint" width={130} height={32} priority />
+            <Image src="/images/logo.png" alt="Salespoint" width={130} height={32} priority className={dark ? "brightness-0 invert" : ""} />
           </NextLink>
-
-          <div className="flex items-center gap-1">
-            <Link as={NextLink} href="#" color="foreground" size="sm" className="font-medium px-2">
-              Log In
-            </Link>
-            <Button
-              variant="light"
-              size="sm"
-              startContent={<Globe size={14} />}
-              endContent={<ChevronDown size={14} />}
-              className="font-medium text-gray-700 px-1"
-            >
-              EN
-            </Button>
-            <Button
-              as={NextLink}
-              href="#"
-              color="default"
-              radius="full"
-              size="sm"
-              className="bg-gray-900 font-semibold text-white"
-            >
-              Contact Us
-            </Button>
-          </div>
+          <Button
+            as={NextLink}
+            href="#"
+            color="primary"
+            radius="md"
+            size="sm"
+            className="font-semibold bg-linear-to-r from-primary to-secondary text-white"
+          >
+            get started
+          </Button>
         </div>
 
         {/* Row 2: Nav links */}
-        <nav className="flex items-center justify-between border-t border-gray-100 px-4 py-2.5">
+        <nav className={`flex items-center justify-between border-t px-4 py-2.5 ${dark ? "border-white/10" : "border-gray-100"}`}>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.label}
@@ -108,7 +83,7 @@ export default function AppNavbar() {
               href={link.href}
               color="foreground"
               size="sm"
-              className="font-bold"
+              className={`font-medium ${linkColor}`}
             >
               {link.label}
             </Link>
@@ -118,4 +93,3 @@ export default function AppNavbar() {
     </header>
   );
 }
-

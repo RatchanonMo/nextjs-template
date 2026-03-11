@@ -1,5 +1,3 @@
-import Footer from "@/components/Footer";
-import Navbar from "@/components/Navbar";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { Providers } from "../components/Providers";
@@ -49,13 +47,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lineSeedSansTH.variable} font-(family-name:--font-line-seed-sans-th) min-h-screen bg-white antialiased`}
+        className={`${lineSeedSansTH.variable} font-(family-name:--font-line-seed-sans-th) min-h-screen antialiased`}
       >
         <Providers>
-          <Navbar />
           {children}
-
-          <Footer />
         </Providers>
       </body>
     </html>

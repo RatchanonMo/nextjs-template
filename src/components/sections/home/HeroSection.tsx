@@ -1,72 +1,59 @@
 "use client";
-
 import { Button } from "@heroui/react";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function HeroSection({
-  imageSrc,
-  avatarSrcs = [],
-}: {
-  imageSrc?: string;
-  avatarSrcs?: string[];
-}) {
+export default function HeroSection() {
   return (
-    <section className="mx-auto flex max-w-6xl flex-col-reverse items-center gap-10 px-6 py-12 md:flex-row md:gap-16 md:py-20">
-      {/* Text content */}
-      <div className="flex flex-1 flex-col gap-6">
-        <h1 className="text-4xl font-bold leading-tight text-gray-900 md:text-5xl">
-          Stop guessing
+    <section className="mx-auto max-w-7xl flex flex-col items-center gap-10 px-6 py-16 text-center md:py-24">
+      {/* Text */}
+      <div className="flex flex-col items-center gap-5 mb-20">
+        <h1 className="text-4xl font-bold text-gray-900 md:text-5xl lg:text-6xl">
+          Qualify your prospects
           <br />
-          Let <span className="text-primary">AI</span> tell you who to
-          <br />
-          contact
+          in a few clicks
         </h1>
-
         <p className="max-w-md text-base text-gray-500">
-          Salepoint AI helps you discover real decision-makers and contact
-          insights faster, with less guesswork
+          Offload all of you prospect qualifying and data researching to our
+          Salespoint AI Agent.
         </p>
-
-        <Button
-          as={Link}
-          href="#"
-          color="primary"
-          radius="full"
-          size="lg"
-          className="max-w-max font-semibold"
-          endContent={<ArrowRight size={16} />}
-        >
-          Get Started
-        </Button>
-
-        <div className="flex flex-wrap items-center justify-between gap-6 md:flex-col md:items-start">
-          <div className="flex flex-col gap-2">
-            <span className="text-sm font-medium text-gray-500">Trusted by</span>
-            <div className="flex items-center gap-3">
-              {Array.from({ length: 5 }).map((_, i) => (
-                avatarSrcs[i] ? (
-                  <div key={i} className="relative h-9 w-9 overflow-hidden rounded-full">
-                    <Image src={avatarSrcs[i]} alt={`Trusted customer ${i + 1}`} fill className="object-cover" />
-                  </div>
-                ) : (
-                  <div key={i} className="h-9 w-9 rounded-full bg-gray-200" />
-                )
-              ))}
-            </div>
+        <div className="flex flex-wrap items-center justify-center gap-3">
+          <Button
+            as={Link}
+            href="#"
+            color="primary"
+            radius="md"
+            size="lg"
+            className="font-semibold bg-linear-to-r from-primary to-secondary"
+          >
+            Get Started
+          </Button>
+          {/* Outlined gradient border button */}
+          <div className="rounded-xl bg-gradient-to-r from-primary to-secondary p-0.5">
+            <Button
+              as={Link}
+              href="#"
+              variant="light"
+              size="lg"
+              className="bg-white rounded-xl font-semibold text-primary"
+            >
+              request demo
+            </Button>
           </div>
         </div>
       </div>
 
-      {/* Hero image */}
-      {imageSrc ? (
-        <div className="relative aspect-4/3 w-full flex-1 overflow-hidden rounded-2xl md:max-w-lg">
-          <Image src={imageSrc} alt="Hero" fill className="object-cover" priority />
-        </div>
-      ) : (
-        <div className="aspect-4/3 w-full flex-1 rounded-2xl bg-gray-200 md:max-w-lg" />
-      )}
+      {/* Dashboard screenshot in purple gradient frame */}
+      <div className="w-full">
+        <Image
+          src="/images/home/hero.svg"
+          alt="Salespoint dashboard"
+          width={1200}
+          height={750}
+          className="w-full object-cover object-top"
+          priority
+        />
+      </div>
     </section>
   );
 }

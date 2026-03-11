@@ -1,4 +1,6 @@
-export const FAQS = [
+import { Faq } from "@/types/directus";
+
+export const FAQS: Faq[] = [
   {
     question: "What is SalePoint AI?",
     answer:
