@@ -2,7 +2,7 @@ import axios from "axios";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:5001";
 export const AUTH_TOKEN_KEY = "flowtask_auth_token";
-const API_RETRY_MAX_ATTEMPTS = Number(process.env.NEXT_PUBLIC_API_RETRY_MAX_ATTEMPTS ?? "2");
+const API_RETRY_MAX_ATTEMPTS = Number(process.env.NEXT_PUBLIC_API_RETRY_MAX_ATTEMPTS ?? "3");
 const API_RETRY_BASE_DELAY_MS = Number(process.env.NEXT_PUBLIC_API_RETRY_BASE_DELAY_MS ?? "350");
 
 type RetryableRequestConfig = {
@@ -47,6 +47,11 @@ export const setAuthToken = (token: string | null) => {
 };
 
 apiClient.interceptors.request.use((config) => {
+  const retryConfig = config as typeof config & RetryableRequestConfig;
+  const method = config.method?.toLowerCase();
+  const explicitlyRetryable = retryConfig.__retryable === true;
+  retryConfig.__retryable = explicitlyRetryable || Boolean(method && RETRYABLE_METHODS.has(method));
+
   if (typeof window !== "undefined" && navigator.onLine === false) {
     return Promise.reject(new axios.AxiosError("You appear to be offline", "ERR_NETWORK", config));
   }
@@ -55,11 +60,6 @@ apiClient.interceptors.request.use((config) => {
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
-
-  const retryConfig = config as typeof config & RetryableRequestConfig;
-  const method = config.method?.toLowerCase();
-  const explicitlyRetryable = retryConfig.__retryable === true;
-  retryConfig.__retryable = explicitlyRetryable || Boolean(method && RETRYABLE_METHODS.has(method));
 
   return config;
 });
@@ -84,6 +84,7 @@ apiClient.interceptors.response.use(
     }
 
     config.__retryCount = retryCount + 1;
+    console.log(`Retrying... (${config.__retryCount})`);
     const jitter = Math.floor(Math.random() * 120);
     const delay = API_RETRY_BASE_DELAY_MS * 2 ** retryCount + jitter;
     await sleep(delay);

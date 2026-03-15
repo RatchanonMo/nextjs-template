@@ -28,7 +28,16 @@ app.use((req, _res, next) => {
 });
 
 app.get('/health', (_req, res) => {
-  res.status(200).json({ success: true, message: 'Server is running', timestamp: new Date().toISOString() });
+  const uptimeSeconds = Number(process.uptime().toFixed(2));
+  const memoryUsageMb = Number((process.memoryUsage().rss / 1024 / 1024).toFixed(2));
+
+  res.status(200).json({
+    success: true,
+    message: 'Server is running',
+    uptime: uptimeSeconds,
+    memory_usage_mb: memoryUsageMb,
+    timestamp: new Date().toISOString(),
+  });
 });
 
 app.use(

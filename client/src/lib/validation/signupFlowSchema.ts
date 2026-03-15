@@ -10,9 +10,9 @@ export const signupFlowSchema = z
       .refine((value) => /[A-Za-z]/.test(value), "Password must include at least one letter")
       .refine((value) => /\d/.test(value), "Password must include at least one number"),
     confirmPassword: z.string().min(1, "Please confirm your password"),
-    agreed: z.literal(true, {
-      errorMap: () => ({ message: "You must accept Terms of Service and Privacy Policy" }),
-    }),
+    agreed: z
+      .boolean()
+      .refine((value) => value, "You must accept Terms of Service and Privacy Policy"),
   })
   .refine((value) => value.password === value.confirmPassword, {
     path: ["confirmPassword"],
