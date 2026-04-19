@@ -122,7 +122,7 @@ export default function LetterInbox({ recipient }: LetterInboxProps) {
               <Button
                 isIconOnly
                 aria-label="จดหมายก่อนหน้า"
-                className="absolute -left-12 top-1/2 z-20 h-11 w-11 -translate-y-1/2 rounded-full bg-white text-xl text-default-400 shadow-md"
+                className="absolute bottom-3 left-3 z-20 h-11 w-11 rounded-full bg-white text-xl text-default-400 shadow-md sm:-left-12 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
                 radius="full"
                 variant="flat"
                 onPress={goPrevious}
@@ -132,7 +132,7 @@ export default function LetterInbox({ recipient }: LetterInboxProps) {
               <Button
                 isIconOnly
                 aria-label="จดหมายถัดไป"
-                className="absolute -right-12 top-1/2 z-20 h-12 w-12 -translate-y-1/2 rounded-full bg-primary text-2xl text-primary-foreground shadow-md"
+                className="absolute bottom-3 right-3 z-20 h-12 w-12 rounded-full bg-primary text-2xl text-primary-foreground shadow-md sm:-right-12 sm:bottom-auto sm:top-1/2 sm:-translate-y-1/2"
                 radius="full"
                 variant="solid"
                 onPress={goNext}

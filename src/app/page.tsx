@@ -40,9 +40,10 @@ export default function Home() {
         classNames={{
           backdrop: "bg-slate-500/30",
         }}
+        hideCloseButton
       >
         <ModalContent className="shadow-none bg-transparent">
-          <ModalBody className="p-0 pb-3">
+          <ModalBody className="p-3">
             <LetterComposer onClose={() => setIsComposerOpen(false)} />
           </ModalBody>
         </ModalContent>
