@@ -2,3 +2,35 @@
 @plugin "../config/hero.ts";
 @source "../../node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}";
 @custom-variant dark (&:is(.dark *));
+
+@keyframes letterEnterRight {
+	0% {
+		opacity: 0;
+		transform: translateX(20px) scale(0.985);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+@keyframes letterEnterLeft {
+	0% {
+		opacity: 0;
+		transform: translateX(-20px) scale(0.985);
+	}
+
+	100% {
+		opacity: 1;
+		transform: translateX(0) scale(1);
+	}
+}
+
+.letter-enter-right {
+	animation: letterEnterRight 340ms ease-out;
+}
+
+.letter-enter-left {
+	animation: letterEnterLeft 340ms ease-out;
+}
